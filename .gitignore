@@ -1,0 +1,14 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+*.apk
+projectFilesBackup
+/.idea/sonarlint/issuestore
+.idea
+config.gradle
+KeyStore.key

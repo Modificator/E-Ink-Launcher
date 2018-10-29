@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E-Ink Launcher</string>
+    <string name="file_manager">文件浏览</string>
+
+    <string name="empty_directory_hint">空文件夹</string>
+    <string name="type_apk">App安装包</string>
+    <string name="type_archive">压缩包</string>
+    <string name="type_certificate">证书</string>
+    <string name="type_directory">文件夹</string>
+    <string name="type_document">文件</string>
+    <string name="type_drawing">照片</string>
+    <string name="type_excel">电子表格</string>
+    <string name="type_image">图片</string>
+    <string name="type_music">音乐</string>
+    <string name="type_pdf">PDF文档</string>
+    <string name="type_power_point">PPT 演示文档</string>
+    <string name="type_video">视频</string>
+    <string name="type_word">Word文档</string>
+
+
+    <string name="setting_show_divider">显示分隔线</string>
+    <string name="setting_hide_divider">隐藏分隔线</string>
+    <string name="setting_set_font_size">设置字体大小</string>
+    <string name="setting_apps_manager">管理应用</string>
+    <string name="setting_column_icons">每列图标</string>
+    <string name="toast_need_wifi_connnect">大哥诶，麻烦先把WIFI连上吧</string>
+    <string name="setting_row_icons">每行图标</string>
+    <string name="battery_heat">电池过热</string>
+    <string name="battery_unknown">电池呢？</string>
+    <string name="battery_charging">充电中</string>
+    <string name="battery_low">电量低</string>
+    <string name="battery_full">充满了</string>
+    <string name="battery_wtf" translatable="false">WTF?</string>
+
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_hide">隐藏</string>
+    <string name="dialog_uninstall">卸载</string>
+    <string name="dialog_pkg_name">包名: %s</string>
+    <string name="dialog_close">关闭</string>
+
+    <string name="wifi_status_off">WiFi 已关闭</string>
+    <string name="wifi_status_closing">WiFi 正在关闭</string>
+    <string name="wifi_status_opening">WiFi 正在开启</string>
+    <string name="wifi_status_on">WiFi 已开启</string>
+    <string name="wifi_status_connected">WiFi 已连接:%s</string>
+    <string name="wifi_status_connecting">WiFi 连接中</string>
+    <string name="wifi_status_disconnected">WiFi 已断开</string>
+    <string name="wifi_status_disconnecting">WiFi 断开中</string>
+
+    <string name="item_lockscreen">一键锁屏</string>
+
+    <string-array name="power_menu">
+        <item>关机</item>
+        <item>重启</item>
+    </string-array>
+    <string name="setting_cloud_manager_on">网络传书 （开）</string>
+    <string name="setting_cloud_manager_off">网络传书 （关）</string>
+    <string name="setting_cloud_manager_wifi_off">网络传书 （请连接WIFI）</string>
+    <string name="setting_help_and_about">帮助 &amp; 关于</string>
+    <string name="path">路径</string>
+    <string name="default_path_setting">设置默认路径</string>
+    <string name="dialog_confim">确认</string>
+    <string name="parent_folder">上级目录</string>
+    <string name="exit">退出</string>
+    <string name="delete">删除</string>
+    <string name="app_manager_finish">完成</string>
+    <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
+    <string name="battery_status_low_battery">电量低</string>
+</resources>

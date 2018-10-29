@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">E-Ink Launcher</string>
+    <string name="file_manager">File Manager</string>
+
+    <string name="empty_directory_hint">Empty directory</string>
+    <string name="start_path_name" translatable="false">Device</string>
+    <string name="type_archive">Archive</string>
+    <string name="type_certificate">Certificate</string>
+    <string name="type_directory">Directory</string>
+    <string name="type_document">File</string>
+    <string name="type_drawing">Picture</string>
+    <string name="type_excel">Spreadsheet</string>
+    <string name="type_image">Image</string>
+    <string name="type_music">Music</string>
+    <string name="type_video">Video</string>
+    <string name="type_pdf">PDF document</string>
+    <string name="type_power_point">Presentation</string>
+    <string name="type_word">Document</string>
+    <string name="type_apk">APK</string>
+
+    <string name="setting_cloud_manager_on">Cloud Manager - ON</string>
+    <string name="setting_cloud_manager_off">Cloud Manager - OFF</string>
+    <string name="setting_cloud_manager_wifi_off">Cloud Manager\n -- No WIFI connect</string>
+    <string name="battery_status_low_battery">Low power</string>
+    <string name="setting_show_divider">Show Divider</string>
+    <string name="setting_hide_divider">Hide Divider</string>
+    <string name="setting_set_font_size">Change Font Size</string>
+    <string name="setting_apps_manager">Apps Manager</string>
+    <string name="setting_column_icons">Column</string>
+    <string name="setting_row_icons">"   Row   "</string>
+    <string name="toast_need_wifi_connnect">Please connect Wlan!</string>
+    <string name="app_manager_finish">Done</string>
+    <string name="battery_heat">Battery Overheat</string>
+    <string name="battery_unknown">Unknown</string>
+    <string name="battery_charging">Charging</string>
+    <string name="battery_low">Low Battery</string>
+    <string name="battery_full">Full</string>
+    <string name="battery_wtf" translatable="false">WTF?</string>
+
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_hide">Hide</string>
+    <string name="dialog_uninstall">Uninstall</string>
+    <string name="dialog_pkg_name">Package Name: %s</string>
+    <string name="dialog_close">Close</string>
+
+    <string name="wifi_status_off">WiFi OFF</string>
+    <string name="wifi_status_closing">WiFi closing</string>
+    <string name="wifi_status_opening">WiFi opening</string>
+    <string name="wifi_status_on">WiFi ON</string>
+    <string name="wifi_status_connected">WiFi connected:%s</string>
+    <string name="wifi_status_connecting">WiFi connecting</string>
+    <string name="wifi_status_disconnected">WiFi disconnected</string>
+    <string name="wifi_status_disconnecting">WiFi disconnecting</string>
+
+    <string name="item_lockscreen">Lock Screen</string>
+
+    <string-array name="power_menu">
+        <item>Power off</item>
+        <item>Reboot</item>
+    </string-array>
+    <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
+    <string name="oh_no">混淆有毛用啊，文件这么少,代码渣貌似也能增加难度,不想加固，加固有问题，大哥我这就署名有价值，反编译别把我名字去了- -</string>
+    <string name="come_on">给点赏钱吧，支付鸨就行，账号是邮箱</string>
+    <string name="setting_help_and_about">Help &amp; About</string>
+    <string name="path">Path</string>
+    <string name="default_path_setting">Default Path</string>
+    <string name="dialog_confim">Confim</string>
+    <string name="parent_folder">Parent folder</string>
+    <string name="exit">Exit</string>
+    <string name="delete">Delete</string>
+</resources>

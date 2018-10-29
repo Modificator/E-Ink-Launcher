@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E-Ink Launcher</string>
+    <string name="file_manager">Menedżer plików</string>
+
+    <string name="empty_directory_hint">Pusty folder</string>
+    <string name="start_path_name" translatable="false">Urządzenie</string>
+    <string name="type_archive">Archiwum</string>
+    <string name="type_certificate">Certyfikat</string>
+    <string name="type_directory">Folder</string>
+    <string name="type_document">Plik</string>
+    <string name="type_drawing">Rysunek</string>
+    <string name="type_excel">Arkusz</string>
+    <string name="type_image">Obraz</string>
+    <string name="type_music">Muzyka</string>
+    <string name="type_video">Wideo</string>
+    <string name="type_pdf">PDF</string>
+    <string name="type_power_point">Presentacja</string>
+    <string name="type_word">Dokument</string>
+    <string name="type_apk">APK</string>
+
+    <string name="setting_cloud_manager_on">Menedżer chmury - wł.</string>
+    <string name="setting_cloud_manager_off">Menedżer chmury - wył.</string>
+    <string name="setting_cloud_manager_wifi_off">Menedżer chmury\n -- Brak WIFI</string>
+    <string name="battery_status_low_battery">Słaba bateria</string>
+    <string name="setting_show_divider">Pokaż siatkę</string>
+    <string name="setting_hide_divider">Ukryj siatkę</string>
+    <string name="setting_set_font_size">Ustaw rozmiar czcionki</string>
+    <string name="setting_apps_manager">Zarządzanie aplikacjami</string>
+    <string name="setting_column_icons">Kolumny</string>
+    <string name="setting_row_icons">" Wiersze "</string>
+    <string name="toast_need_wifi_connnect">Proszę włączyć Wlan!</string>
+    <string name="app_manager_finish">Gotowe</string>
+    <string name="battery_heat">Przegrzanie baterii</string>
+    <string name="battery_unknown">Nieznany</string>
+    <string name="battery_charging">Ładowanie</string>
+    <string name="battery_low">Niski poziom</string>
+    <string name="battery_full">Pełna</string>
+    <string name="battery_wtf" translatable="false">WTF?</string>
+
+    <string name="dialog_cancel">Anuluj</string>
+    <string name="dialog_hide">Ukryj</string>
+    <string name="dialog_uninstall">Odinstaluj</string>
+    <string name="dialog_pkg_name">Nazwa pakietu: %s</string>
+    <string name="dialog_close">Zamknij</string>
+
+    <string name="wifi_status_off">WiFi wył.</string>
+    <string name="wifi_status_closing">Wyłączanie WiFi</string>
+    <string name="wifi_status_opening">Włączanie WiFi</string>
+    <string name="wifi_status_on">WiFi wł.</string>
+    <string name="wifi_status_connected">WiFi połączone:%s</string>
+    <string name="wifi_status_connecting">Łączenie WiFi</string>
+    <string name="wifi_status_disconnected">WiFi wyłączone</string>
+    <string name="wifi_status_disconnecting">Rozłączanie WiFi</string>
+
+    <string name="item_lockscreen">Zablokuj ekran</string>
+
+    <string-array name="power_menu">
+        <item>Wyłącz</item>
+        <item>Uruchom ponownie</item>
+    </string-array>
+    <string name="power_title">现在可以操作电源了哦~</string>
+    <string name="setting_help_and_about">Pomoc i informacje</string>
+    <string name="path">Droga</string>
+    <string name="default_path_setting">Domyślne drogę</string>
+    <string name="dialog_confim">Confim</string>
+    <string name="parent_folder">Parent folder</string>
+    <string name="exit">Exit</string>
+    <string name="delete">usunąć</string>
+</resources>

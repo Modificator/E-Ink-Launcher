@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="col_num_entries" >
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="col_num_values">
+        <item>2 ikony</item>
+        <item>3 ikony</item>
+        <item>4 ikony</item>
+        <item>5 ikon</item>
+        <item>6 ikon</item>
+        <item>7 ikon</item>
+        <item>8 ikon</item>
+        <item>9 ikon</item>
+        <item>10 ikon</item>
+    </string-array>
+</resources>

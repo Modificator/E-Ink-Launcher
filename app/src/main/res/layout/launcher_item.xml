@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:background="@drawable/app_item_normal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.1dp"
+                android:layout_weight="1" />
+
+            <cn.modificator.launcher.widgets.RatioImageView
+                android:id="@+id/appImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                app:ratioHeight="1"
+                app:ratioWidth="1"
+                app:reference="width"
+                tools:src="@mipmap/ic_launcher" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.1dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <cn.modificator.launcher.widgets.ObserverFontTextView
+            android:id="@+id/appName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:maxLines="2"
+            android:textSize="30sp" />
+        <!--android:singleLine="true"-->
+        <!--10sp-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+
+        <cn.modificator.launcher.widgets.RatioImageView
+            android:id="@+id/menu_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border_half_white_1dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/smartbar_delete"
+            android:tint="#000000" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#000000"
+            android:visibility="gone" />
+
+        <cn.modificator.launcher.widgets.RatioImageView
+            android:id="@+id/menu_hide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border_half_white_1dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/app_visible_status"
+            android:tint="#000000" />
+
+    </LinearLayout>
+</FrameLayout>
