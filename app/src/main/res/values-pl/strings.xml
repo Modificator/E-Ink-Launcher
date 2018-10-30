@@ -15,7 +15,7 @@
     <string name="type_music">Muzyka</string>
     <string name="type_video">Wideo</string>
     <string name="type_pdf">PDF</string>
-    <string name="type_power_point">Presentacja</string>
+    <string name="type_power_point">Prezentacja</string>
     <string name="type_word">Dokument</string>
     <string name="type_apk">APK</string>
 
@@ -61,10 +61,10 @@
     </string-array>
     <string name="power_title">现在可以操作电源了哦~</string>
     <string name="setting_help_and_about">Pomoc i informacje</string>
-    <string name="path">Droga</string>
-    <string name="default_path_setting">Domyślne drogę</string>
-    <string name="dialog_confim">Confim</string>
-    <string name="parent_folder">Parent folder</string>
-    <string name="exit">Exit</string>
-    <string name="delete">usunąć</string>
+    <string name="path">Ścieżka</string>
+    <string name="default_path_setting">Domyślna ścieżka</string>
+    <string name="dialog_confim">Potwierdź</string>
+    <string name="parent_folder">Wyżej</string>
+    <string name="exit">Zakończ</string>
+    <string name="delete">Usuń</string>
 </resources>
