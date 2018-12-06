@@ -448,6 +448,21 @@
             android:layout_height="1dp"
             android:background="#000000" />
 
+        <TextView
+            android:id="@+id/toSort"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="排序应用"
+            android:textSize="16sp"
+            tools:text="排序应用" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
         <LinearLayout
             android:id="@+id/helpAbout"
             android:layout_width="match_parent"

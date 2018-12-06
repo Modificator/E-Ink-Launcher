@@ -1,4 +1,4 @@
-package cn.modificator.launcher;
+﻿package cn.modificator.launcher;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -58,7 +58,7 @@ public class AboutDialog {
     root.addView(line, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.dp2Px(context, 1)));
 
     TextView thanksView = new TextView(context);
-    thanksView.setText("Thanks:\nMaciej Haudek <kontakt@haudek.com>");
+    thanksView.setText("Thanks:\nMaciej Haudek <kontakt@haudek.com>\n");  
     thanksView.setTextSize(15);
     thanksView.setPadding(0, Utils.dp2Px(context, 10), 0, Utils.dp2Px(context, 10));
     root.addView(thanksView);

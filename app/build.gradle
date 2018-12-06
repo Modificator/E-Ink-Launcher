@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply from: '../config.gradle'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias release.keyAlias
-            keyPassword release.keyPassword
-            storeFile release.storeFile
-            storePassword release.storePassword
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias release.keyAlias
+//            keyPassword release.keyPassword
+//            storeFile release.storeFile
+//            storePassword release.storePassword
+//        }
+//    }
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
@@ -18,7 +18,7 @@ android {
         targetSdkVersion 28
         versionCode 16
         versionName "0.1.4"
-        signingConfig signingConfigs.config
+//        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -27,7 +27,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
         }
         debug {
             debuggable true
@@ -35,7 +35,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
         }
     }
     lintOptions {
@@ -66,6 +66,7 @@ dependencies {
     implementation 'androidx.documentfile:documentfile:1.0.0'
     implementation 'org.apache.ftpserver:ftplet-api:1.1.0'
     implementation 'org.apache.ftpserver:ftpserver-core:1.1.0'
+    implementation 'com.android.support:support-v4:28.+'
 }
 /*
 android.applicationVariants.all { variant ->

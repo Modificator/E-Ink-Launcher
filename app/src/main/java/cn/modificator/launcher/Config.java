@@ -1,9 +1,15 @@
 package cn.modificator.launcher;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,8 +26,37 @@ public class Config {
   private String preferencesFileName = "launcherPropertyFile";
   private Set<String> hideApps = new HashSet<>();
 
+  public static boolean isFirstRun = true;
+
+  public static Config instance = null;
+  public int getAppListDate (String appName) {
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE);
+    int pos = preferences.getInt(appName,0);
+    return pos;
+  }
+
+  public void setAppListDate (String appName,int pos ) {
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE);
+    preferences.edit().putInt(appName,pos).apply();
+  }
+
+  public boolean getIsFirstRun () {
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE);
+    isFirstRun = preferences.getBoolean(Launcher.IS_FIRST_RUN,true);
+    return isFirstRun;
+  }
+
+  public void setIsFirstRun (boolean isFirstRun) {
+    Config.isFirstRun = isFirstRun;
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE);
+    preferences.edit().putBoolean(Launcher.IS_FIRST_RUN,isFirstRun).apply();
+  }
+
+
+
   public Config(Context context) {
     this.context = context;
+    instance = this;
   }
 
   public int getColNum() {
@@ -103,4 +138,6 @@ public class Config {
     SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
     preferences.edit().putBoolean(Launcher.LAUNCHER_HIDE_DIVIDER, b).apply();
   }
+
+
 }

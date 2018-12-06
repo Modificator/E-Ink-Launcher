@@ -1,4 +1,4 @@
-package cn.modificator.launcher;
+﻿package cn.modificator.launcher;
 
 import android.app.Activity;
 import android.content.Context;
@@ -90,7 +90,10 @@ public class CrashDetailPage extends Activity {
     tvContent.append("github issues : https://github.com/Modificator/E-Ink-Launcher\n");
     tvContent.append("well it's already open source\n");
     tvContent.append("当然也可以在酷安应用页反馈\n");
+ 
     tvContent.append("Thanks.");
+
+
     tvContent.append("\nーーーーーーーーーーーーーーーーーーーー\n");
 
     if (getIntent().hasExtra("crashFile")) {

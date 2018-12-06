@@ -67,4 +67,5 @@
     <string name="app_manager_finish">完成</string>
     <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
     <string name="battery_status_low_battery">电量低</string>
+    <string name="Save_btn">保存</string>
 </resources>

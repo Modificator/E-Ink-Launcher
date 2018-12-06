@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.modificator.launcher">
-    <!--package="cn.modificator.launcher" android:sharedUserId="android.uid.system">-->
+
+    <!-- package="cn.modificator.launcher" android:sharedUserId="android.uid.system"> -->
 
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -55,6 +55,7 @@
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/lock" />
+
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
@@ -68,8 +69,12 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".CrashDetailPage"
-            android:process=":crash_page"/>
+        <activity
+            android:name=".CrashDetailPage"
+            android:process=":crash_page" />
+        <activity
+            android:name=".SortActivity"
+            android:label="@string/title_activity_sort"></activity>
     </application>
 
 </manifest>

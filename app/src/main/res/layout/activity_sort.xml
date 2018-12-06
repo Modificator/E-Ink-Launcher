@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SortActivity">
+
+    <ListView
+        android:id="@+id/sort_list"
+        android:layout_width="match_parent"
+        android:layout_weight="1" android:layout_height="0dp">
+
+    </ListView>
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/sort_save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Save_btn"
+        android:gravity="center_horizontal"
+        android:text="@string/Save_btn"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="@string/Save_btn" />
+
+</LinearLayout>

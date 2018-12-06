@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import cn.modificator.launcher.ComparableResolveInfo;
 import cn.modificator.launcher.Launcher;
 import cn.modificator.launcher.R;
 import cn.modificator.launcher.Utils;
@@ -48,7 +49,7 @@ public class EInkLauncherView extends ViewGroup {
   int ROW_NUM = 5;
   int COL_NUM = 5;
   float dragDistance = 0;
-  private List<ResolveInfo> dataList = new ArrayList<>();
+  private List<ComparableResolveInfo> dataList = new ArrayList<>();
   PackageManager packageManager;
   TouchListener touchListener;
   boolean isDelete = false;
@@ -214,12 +215,12 @@ public class EInkLauncherView extends ViewGroup {
         else
           view.setBackgroundResource(R.drawable.app_item_normal);
         if (COL_NUM * i + j < dataList.size()) {
-          if (iconReplacePkg.contains(dataList.get(COL_NUM * i + j).activityInfo.packageName)) {
-            ((ImageView) view.findViewById(R.id.appImage)).setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(dataList.get(COL_NUM * i + j).activityInfo.packageName))));
+          if (iconReplacePkg.contains(dataList.get(COL_NUM * i + j).getResolveInfo().activityInfo.packageName)) {
+            ((ImageView) view.findViewById(R.id.appImage)).setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(dataList.get(COL_NUM * i + j).getResolveInfo().activityInfo.packageName))));
           } else {
-            ((ImageView) view.findViewById(R.id.appImage)).setImageDrawable(dataList.get(COL_NUM * i + j).loadIcon(packageManager));
+            ((ImageView) view.findViewById(R.id.appImage)).setImageDrawable(dataList.get(COL_NUM * i + j).getResolveInfo().loadIcon(packageManager));
           }
-          ((TextView) view.findViewById(R.id.appName)).setText(dataList.get(COL_NUM * i + j).loadLabel(packageManager));
+          ((TextView) view.findViewById(R.id.appName)).setText(dataList.get(COL_NUM * i + j).getResolveInfo().loadLabel(packageManager));
           ((TextView) view.findViewById(R.id.appName)).setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
           observable.addObserver(((ObserverFontTextView) view.findViewById(R.id.appName)));
           view.setOnClickListener(new ItemClickListener(COL_NUM * i + j));
@@ -230,7 +231,7 @@ public class EInkLauncherView extends ViewGroup {
         if (isDelete && COL_NUM * i + j < dataList.size()) {
           boolean showIcon = false;
           try {
-            showIcon = (packageManager.getPackageInfo(dataList.get(COL_NUM * i + j).activityInfo.packageName, 0).applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) <= 0;
+            showIcon = (packageManager.getPackageInfo(dataList.get(COL_NUM * i + j).getResolveInfo().activityInfo.packageName, 0).applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) <= 0;
           } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
           }
@@ -239,7 +240,7 @@ public class EInkLauncherView extends ViewGroup {
 //                    ((ViewGroup) view).getChildAt(1).setVisibility(showIcon ? VISIBLE : GONE);
           ((ViewGroup) view).getChildAt(1).setVisibility(VISIBLE);
           view.findViewById(R.id.menu_delete).setVisibility(showIcon ? VISIBLE : GONE);
-          view.findViewById(R.id.menu_hide).setSelected(hideAppPkg.contains(dataList.get(COL_NUM * i + j).activityInfo.packageName));
+          view.findViewById(R.id.menu_hide).setSelected(hideAppPkg.contains(dataList.get(COL_NUM * i + j).getResolveInfo().activityInfo.packageName));
         }
                /* ViewGroup v = (ViewGroup) ((ViewGroup) view).getChildAt(0);
 //                v.measure((int) (getItemWidth() * 0.8), (int) (getItemHeight() * 0.8));
@@ -254,7 +255,7 @@ public class EInkLauncherView extends ViewGroup {
     }
   }
 
-  public void setAppList(List<ResolveInfo> appList) {
+  public void setAppList(List<ComparableResolveInfo> appList) {
     dataList.clear();
     dataList.addAll(appList);
     requestLayout();
@@ -316,12 +317,12 @@ public class EInkLauncherView extends ViewGroup {
     @Override
     public void onClick(View v) {
       if (isDelete) {
-        Intent deleteIntent = new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + dataList.get(position).activityInfo.packageName));
+        Intent deleteIntent = new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + dataList.get(position).getResolveInfo().activityInfo.packageName));
         v.getContext().startActivity(deleteIntent);
         return;
       }
-      ResolveInfo info = dataList.get(position);
-      ComponentName componentName = new ComponentName(info.activityInfo.packageName, info.activityInfo.name);
+      ComparableResolveInfo info = dataList.get(position);
+      ComponentName componentName = new ComponentName(info.getResolveInfo().activityInfo.packageName, info.getResolveInfo().activityInfo.name);
       Intent intent = new Intent();
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
       intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -340,10 +341,10 @@ public class EInkLauncherView extends ViewGroup {
 
     @Override
     public boolean onLongClick(View v) {
-      final String pkg = dataList.get(position).activityInfo.packageName;
+      final String pkg = dataList.get(position).getResolveInfo().activityInfo.packageName;
       new AlertDialog.Builder(v.getContext())
-          .setIcon(dataList.get(position).loadIcon(packageManager))
-          .setTitle(dataList.get(position).loadLabel(packageManager))
+          .setIcon(dataList.get(position).getResolveInfo().loadIcon(packageManager))
+          .setTitle(dataList.get(position).getResolveInfo().loadLabel(packageManager))
           .setMessage(getResources().getString(R.string.dialog_pkg_name, pkg))
           .setPositiveButton(R.string.dialog_cancel, null)
           .setNeutralButton(R.string.dialog_hide, new DialogInterface.OnClickListener() {
@@ -376,7 +377,7 @@ public class EInkLauncherView extends ViewGroup {
 
     @Override
     public void onClick(View v) {
-      String pkg = dataList.get(position).activityInfo.packageName;
+      String pkg = dataList.get(position).getResolveInfo().activityInfo.packageName;
       if (hideAppPkg.contains(pkg)) {
         v.setSelected(false);
         hideAppPkg.remove(pkg);

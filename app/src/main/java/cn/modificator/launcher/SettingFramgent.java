@@ -49,6 +49,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
     rootView.findViewById(R.id.toBack).setOnClickListener(this);
     rootView.findViewById(R.id.rootView).setOnClickListener(this);
     rootView.findViewById(R.id.deleteApp).setOnClickListener(this);
+    rootView.findViewById(R.id.toSort).setOnClickListener(this);    //添加设置界面点击跳转
     ftpStatus = (TextView) rootView.findViewById(R.id.ftp_status);
     ftpAddr = (TextView) rootView.findViewById(R.id.ftp_addr);
     hideDivider = (TextView) rootView.findViewById(R.id.hideDivider);
@@ -163,6 +164,9 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
           stopServer();
         }
         break;
+      case R.id.toSort:
+          intent = new Intent(v.getContext(), SortActivity.class);
+          startActivity(intent);
     }
   }
 

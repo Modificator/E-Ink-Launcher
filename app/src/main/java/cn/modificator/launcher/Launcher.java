@@ -14,6 +14,7 @@ import android.content.res.ColorStateList;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +40,10 @@ public class Launcher extends Activity {
   public static final String LAUNCHER_ACTION = "launcherReceiver";
   public static final String LAUNCHER_FONT_SIZE = "launcherFontSize";
   public static final String LAUNCHER_HIDE_DIVIDER = "launcherHideDivider";
+
+
+  public static final String IS_FIRST_RUN = "isFirstRun";
+
 
   EInkLauncherView launcherView;
   AppDataCenter dataCenter = null;
@@ -68,6 +73,7 @@ public class Launcher extends Activity {
 
 
     isChina = getResources().getConfiguration().locale.getCountry().equals("CN");
+
     initView();
     //Log.e("----",Arrays.toString(iconFile.list()));
   }
@@ -87,9 +93,27 @@ public class Launcher extends Activity {
     launcherView.setHideDivider(config.getDividerHideStatus());
 
     dataCenter = new AppDataCenter(this);
-    dataCenter.setHideApps(config.getHideApps());
+
+
+
+    AppDataCenter.instance.LoadAllApps();
+
+    if (Config.instance.getIsFirstRun()){
+      dataCenter.setHideApps(config.getHideApps());
+      AppDataCenter.setAppsListToPre();
+      Config.instance.setIsFirstRun(false);
+    } else {
+      //不是第一次运行 加载排序
+      dataCenter.setHideApps(config.getHideApps());
+      AppDataCenter.getAppListFromPre();
+      AppDataCenter.instance.SortAppList();
+    }
+
+
+
     dataCenter.setPageStatus(pageStatus);
     dataCenter.setLauncherView(launcherView);
+
     //加载之前保存的桌面数据
     updateColNum(config.getColNum());
     updateRowNum(config.getRowNum());
@@ -282,6 +306,15 @@ public class Launcher extends Activity {
   BroadcastReceiver appChangeReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
+
+      //检测安装或者卸载时重新加载所有程序，其他情况（翻页等）刷新不加载程序
+      if (intent.getAction().equals(Intent.ACTION_PACKAGE_ADDED)){
+        dataCenter.LoadAllApps();
+      }
+      if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)){
+        dataCenter.LoadAllApps();
+      }
+
       dataCenter.refreshAppList(launcherView.isDelete());
     }
   };
