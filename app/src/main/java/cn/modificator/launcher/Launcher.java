@@ -146,6 +146,8 @@ public class Launcher extends Activity {
       @Override
       public void onClick(View v) {
         launcherView.setDelete(false);
+        AppDataCenter.instance.CompareMappsToHideAppsAndRemoveHideApps();
+
         dataCenter.refreshAppList();
         config.setHideApps(dataCenter.getHideApps());
         v.setVisibility(View.GONE);

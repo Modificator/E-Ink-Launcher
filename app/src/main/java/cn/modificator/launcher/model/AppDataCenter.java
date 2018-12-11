@@ -77,6 +77,7 @@ public class AppDataCenter {
             public void change (String pkg) {
 //                if (!hideApps.add(pkg))
 //                    hideApps.remove(pkg);
+                CompareMappsToHideAppsAndRemoveHideApps();
                 refreshAppList();
             }
         });
@@ -100,13 +101,15 @@ public class AppDataCenter {
     }
 
 
-    private void CompareMappsToHideAppsAndRemoveHideApps () {
+    public void CompareMappsToHideAppsAndRemoveHideApps () {
         // iterator 遍历 AppListWithoutHidenApps 删除 hide apps 已有元素  而不是直接清空 AppListWithoutHidenApps 然后再添加
         if (launcherView != null) {
 //        if (launcherView!=null&&!launcherView.getHideAppPkg().isEmpty()) {
             hideApps.clear();
             hideApps.addAll(launcherView.getHideAppPkg());
         }
+        AppListWithoutHidenApps.clear();
+        AppListWithoutHidenApps.addAll(AllApps);
         Iterator<ComparableResolveInfo> iterator = AppListWithoutHidenApps.iterator();
         while (iterator.hasNext()) {
             ComparableResolveInfo comparableResolveInfo = iterator.next();
@@ -117,6 +120,7 @@ public class AppDataCenter {
 //        iterator.remove();
 //      }
         }
+        Collections.sort(AppListWithoutHidenApps);
         mApps = AppListWithoutHidenApps;
         updatePageCount();
     }
@@ -185,7 +189,6 @@ public class AppDataCenter {
         if (showAll) {
             mApps = AllApps;
         } else {
-            CompareMappsToHideAppsAndRemoveHideApps();
             mApps = AppListWithoutHidenApps;
         }
         setPageShow();

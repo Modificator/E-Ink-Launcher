@@ -1,4 +1,4 @@
-﻿package cn.modificator.launcher;
+package cn.modificator.launcher;
 
 import android.app.AlertDialog;
 import android.content.Context;
