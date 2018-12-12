@@ -188,8 +188,10 @@ public class AppDataCenter {
     public void refreshAppList (boolean showAll) {
         if (showAll) {
             mApps = AllApps;
+            updatePageCount();
         } else {
             mApps = AppListWithoutHidenApps;
+            updatePageCount();
         }
         setPageShow();
     }
