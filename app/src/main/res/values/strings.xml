@@ -17,6 +17,7 @@
     <string name="type_power_point">Presentation</string>
     <string name="type_word">Document</string>
     <string name="type_apk">APK</string>
+    <string name="type_other">Other</string>
 
     <string name="setting_cloud_manager_on">Cloud Manager - ON</string>
     <string name="setting_cloud_manager_off">Cloud Manager - OFF</string>
@@ -28,7 +29,10 @@
     <string name="setting_apps_manager">Apps Manager</string>
     <string name="setting_column_icons">Column</string>
     <string name="setting_row_icons">"   Row   "</string>
-    <string name="toast_need_wifi_connnect">Please connect Wlan!</string>
+    <string name="setting_help_and_about">Help &amp; About</string>
+
+    <string name="toast_need_wifi_connnect">Please connect WiFi!</string>
+
     <string name="app_manager_finish">Done</string>
     <string name="battery_heat">Battery Overheat</string>
     <string name="battery_unknown">Unknown</string>
@@ -42,6 +46,7 @@
     <string name="dialog_uninstall">Uninstall</string>
     <string name="dialog_pkg_name">Package Name: %s</string>
     <string name="dialog_close">Close</string>
+    <string name="dialog_confim">Confirm</string>
 
     <string name="wifi_status_off">WiFi OFF</string>
     <string name="wifi_status_closing">WiFi closing</string>
@@ -53,19 +58,63 @@
     <string name="wifi_status_disconnecting">WiFi disconnecting</string>
 
     <string name="item_lockscreen">Lock Screen</string>
+    <string name="restart_launcher">Restart Launcher</string>
 
     <string-array name="power_menu">
         <item>Power off</item>
         <item>Reboot</item>
     </string-array>
-    <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
+
+    <string name="power_title">现在可以操作电源了哦~</string>
+
     <string name="oh_no">混淆有毛用啊，文件这么少,代码渣貌似也能增加难度,不想加固，加固有问题，大哥我这就署名有价值，反编译别把我名字去了- -</string>
     <string name="come_on">给点赏钱吧，支付鸨就行，账号是邮箱</string>
-    <string name="setting_help_and_about">Help &amp; About</string>
+
     <string name="path">Path</string>
     <string name="default_path_setting">Default Path</string>
-    <string name="dialog_confim">Confim</string>
+
     <string name="parent_folder">Parent folder</string>
     <string name="exit">Exit</string>
     <string name="delete">Delete</string>
+
+    <string name="dev_admin_desc">E-Ink Launcher getting lock screen permissions</string>
+    <!-- E-Ink Launcher 获取锁屏权限 -->
+
+    <string name="choose_app_title">Open as</string>
+    <!-- 打开方式 -->
+    <string name="no_apps_to_open">Unable to find an app that can open this file</string>
+    <!--无法找到可以打开此文件的应用-->
+
+    <string name="author_info"> Author:Modificator
+ Email:yunshangcn@gmail.com
+ Weibo: weibo.com/yunshangcn</string>
+    <string name="thanks"><![CDATA[Thanks:
+Maciej Haudek <kontakt@haudek.com>]]></string>
+    <string name="launcher_info">
+E-Ink Launcher 是作者君闲暇之作，JDR没桌面，又找不到
+自己满意的，果断自己动手写了一个。
+主要功能：
+1.当然是显示App了
+2.App展示密度调整
+3.App名称字体大小调整
+4.卸载/隐藏App
+5.一键锁屏
+6.一键开关WIFI
+7.可以换图标了，长按图标会出现包名，把图标重命名成包名+文件后缀，然后连接电脑放到E-Ink Launcher/icon 下就可以了
+PS：图标长按有惊喜
+</string>
+
+    <string name="report_error_title">Oh! It\u0027s Crashed.</string>
+    <string name="report_error_description">
+ーーーーーーーーーーーーーーーーーーーー
+Please screenshot and give me a feedback.
+email    : yunshangcn@gmail.com
+telegram : https://t.me/EInkLauncher
+github issues : https://github.com/Modificator/E-Ink-Launcher
+well it\u0027s already open source
+当然也可以在酷安应用页反馈
+Thanks.
+ーーーーーーーーーーーーーーーーーーーー
+</string>
+
 </resources>

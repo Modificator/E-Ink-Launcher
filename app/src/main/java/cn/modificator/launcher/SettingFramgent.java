@@ -145,7 +145,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
         break;
       case R.id.hideDivider:
         Config.hideDivider = !Config.hideDivider;
-        hideDivider.setText(Config.hideDivider ? "显示分隔线" : "隐藏分隔线");
+        hideDivider.setText(Config.hideDivider ? R.string.setting_show_divider : R.string.setting_hide_divider);
 
         intent = new Intent();
         intent.putExtra(Launcher.LAUNCHER_HIDE_DIVIDER, Config.hideDivider);
@@ -158,7 +158,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
           if (FTPService.isConnectedToWifi(getActivity()))
             startServer();
           else
-            Toast.makeText(getActivity(), "大哥诶，麻烦先把WIFI连上吧", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.toast_need_wifi_connnect, Toast.LENGTH_SHORT).show();
         } else {
           stopServer();
         }

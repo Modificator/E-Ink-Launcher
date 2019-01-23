@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import cn.modificator.launcher.R;
 import cn.modificator.launcher.filemanager.MimeTypeUtil;
 
 /**
@@ -28,7 +29,7 @@ public class Futils {
     try {
       openunknown(documentFile, m, false);
     } catch (Exception e) {
-      Toast.makeText(m, "无法找到可以打开此文件的应用", Toast.LENGTH_LONG).show();
+      Toast.makeText(m, R.string.no_apps_to_open, Toast.LENGTH_LONG).show();  // "Unable to find an app that can open this file"
       openWith(documentFile, m);
     }
   }
@@ -47,13 +48,13 @@ public class Futils {
       intent.setDataAndType(f.getUri(), type);
       Intent startintent;
       if (forcechooser)
-        startintent = Intent.createChooser(intent, "打开方式");
+        startintent = Intent.createChooser(intent, c.getText(R.string.choose_app_title));
       else startintent = intent;
       try {
         c.startActivity(startintent);
       } catch (ActivityNotFoundException e) {
         e.printStackTrace();
-        Toast.makeText(c, "无法找到可以打开此文件的应用", Toast.LENGTH_SHORT).show();
+        Toast.makeText(c, R.string.no_apps_to_open, Toast.LENGTH_SHORT).show();
         openWith(f, c);
       }
     } else {
@@ -66,8 +67,9 @@ public class Futils {
   public static void openWith(final DocumentFile f, final Context c) {
 
     AlertDialog.Builder a = new AlertDialog.Builder(c);
-    a.setTitle("打开方式");
-    String[] items = new String[]{"文本", "图片", "视频", "音频", "其他"};
+    a.setTitle(R.string.choose_app_title);
+
+    String[] items = c.getResources().getStringArray(R.array.file_types);
 
     a.setItems(items, new DialogInterface.OnClickListener() {
       @Override
@@ -76,27 +78,30 @@ public class Futils {
         intent.setAction(android.content.Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+        String[] items_mime = c.getResources().getStringArray(R.array.file_types_mime);
+
         switch (which) {
           case 0:
-            intent.setDataAndType(f.getUri(), "text/*");
+            intent.setDataAndType(f.getUri(), items_mime[0]);
             break;
           case 1:
-            intent.setDataAndType(f.getUri(), "image/*");
+            intent.setDataAndType(f.getUri(), items_mime[1]);
             break;
           case 2:
-            intent.setDataAndType(f.getUri(), "video/*");
+            intent.setDataAndType(f.getUri(), items_mime[2]);
             break;
           case 3:
-            intent.setDataAndType(f.getUri(), "audio/*");
+            intent.setDataAndType(f.getUri(), items_mime[3]);
             break;
           case 4:
-            intent.setDataAndType(f.getUri(), "*/*");
+            intent.setDataAndType(f.getUri(), items_mime[4]);
             break;
         }
         try {
           c.startActivity(intent);
         } catch (Exception e) {
-          Toast.makeText(c, "无法找到可以打开此文件的应用", Toast.LENGTH_SHORT).show();
+          Toast.makeText(c, R.string.no_apps_to_open, Toast.LENGTH_SHORT).show();
           openWith(f, c);
         }
       }

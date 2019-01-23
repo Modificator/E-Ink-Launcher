@@ -184,7 +184,7 @@ public class EInkLauncherView extends ViewGroup {
                         }
                       }
                     })
-                    .setPositiveButton("取消", null)
+                    .setPositiveButton(android.R.string.cancel, null)  // "取消": "Cancel"
                     .show();
                 return true;
               }

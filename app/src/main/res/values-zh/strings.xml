@@ -67,4 +67,8 @@
     <string name="app_manager_finish">完成</string>
     <string name="power_title" translatable="false">现在可以操作电源了哦~</string>
     <string name="battery_status_low_battery">电量低</string>
+    <string name="dev_admin_desc">E-Ink Launcher 获取锁屏权限</string>
+    <string name="choose_app_title">打开方式</string>
+    <string name="no_apps_to_open">无法找到可以打开此文件的应用</string>
+    <string name="type_other">其他</string>
 </resources>

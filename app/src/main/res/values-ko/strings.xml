@@ -41,7 +41,7 @@
     <string name="type_archive">압축 파일</string>
     <string name="type_certificate">인증서</string>
     <string name="type_directory">디렉토리</string>
-    <string name="type_document">파일</string>
+    <string name="type_document">텍스트</string>
     <string name="type_drawing">그림</string>
     <string name="type_excel">스프레드시트</string>
     <string name="type_image">이미지</string>
@@ -58,4 +58,13 @@
     <string name="wifi_status_off">WiFi 꺼짐</string>
     <string name="wifi_status_on">WiFi 켜짐</string>
     <string name="wifi_status_opening">WiFi 여는 중</string>
+    <string name="dev_admin_desc">E-Ink Launcher에서 잠금 화면을 요청합니다</string>
+    <string name="choose_app_title">다음으로 열기</string>
+    <string name="no_apps_to_open">이 형식의 파일을 열 수 있는 앱을 찾지 못했습니다</string>
+    <string name="type_other">기타</string>
+    <string name="restart_launcher">런처 재시작</string>
+    <string-array name="power_menu">
+        <item>전원 끄기</item>
+        <item>재시작</item>
+    </string-array>
 </resources>

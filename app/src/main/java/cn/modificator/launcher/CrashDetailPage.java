@@ -55,7 +55,7 @@ public class CrashDetailPage extends Activity {
     root.addView(scrollView, new LinearLayout.LayoutParams(-1, -1, 1));
 
     btnReLaunch = new TextView(this);
-    btnReLaunch.setText("Restart Launcher");
+    btnReLaunch.setText(R.string.restart_launcher);
     btnReLaunch.setTextColor(Color.BLACK);
     btnReLaunch.setGravity(Gravity.CENTER);
 
@@ -79,19 +79,12 @@ public class CrashDetailPage extends Activity {
     });
 
     tvContent.setText("");
-    String title = "Oh! It's Crashed.";
+    String title = getText(R.string.report_error_title).toString();
     SpannableString titleSpan = new SpannableString(title);
     titleSpan.setSpan(new AbsoluteSizeSpan(25, true), 0, title.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     tvContent.append(titleSpan);
-    tvContent.append("\nーーーーーーーーーーーーーーーーーーーー\n");
-    tvContent.append("Please screenshot and give me feedback.\n");
-    tvContent.append("email    : yunshangcn@gmail.com\n");
-    tvContent.append("telegram : https://t.me/EInkLauncher\n");
-    tvContent.append("github issues : https://github.com/Modificator/E-Ink-Launcher\n");
-    tvContent.append("well it's already open source\n");
-    tvContent.append("当然也可以在酷安应用页反馈\n");
-    tvContent.append("Thanks.");
-    tvContent.append("\nーーーーーーーーーーーーーーーーーーーー\n");
+    tvContent.append(getText(R.string.report_error_description));
+
 
     if (getIntent().hasExtra("crashFile")) {
       String fileName = getIntent().getStringExtra("crashFile");

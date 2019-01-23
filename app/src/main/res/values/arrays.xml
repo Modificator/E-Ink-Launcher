@@ -22,4 +22,20 @@
         <item>9 items</item>
         <item>10 items</item>
     </string-array>
+
+    <string-array name="file_types">
+        <!-- {"文本", "图片", "视频", "音频", "其他"} -->
+        <item>@string/type_document</item>
+        <item>@string/type_image</item>
+        <item>@string/type_video</item>
+        <item>@string/type_music</item>
+        <item>@string/type_other</item>
+    </string-array>
+    <string-array name="file_types_mime">
+        <item>text/*</item>
+        <item>image/*</item>
+        <item>video/*</item>
+        <item>audio/*</item>
+        <item>*/*</item>
+    </string-array>
 </resources>

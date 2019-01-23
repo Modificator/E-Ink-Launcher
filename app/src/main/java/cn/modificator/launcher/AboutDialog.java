@@ -33,7 +33,7 @@ public class AboutDialog {
     root.setOrientation(LinearLayout.VERTICAL);
     root.setBackgroundColor(0xffffffff);
     TextView appName = new TextView(context);
-    appName.setText("E-Ink Launcher");
+    appName.setText(R.string.app_name);
     appName.setTextSize(30);
     root.addView(appName);
     View line = new View(context);
@@ -42,7 +42,7 @@ public class AboutDialog {
 
     TextView authorInfo = new TextView(context);
 
-    authorInfo.setText(" Author:Modificator\n Email:yunshangcn@gmail.com\n Weibo: weibo.com/yunshangcn");
+    authorInfo.setText(R.string.author_info);
     authorInfo.setTextSize(18);
     authorInfo.setTextColor(0xff000000);
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -58,7 +58,7 @@ public class AboutDialog {
     root.addView(line, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.dp2Px(context, 1)));
 
     TextView thanksView = new TextView(context);
-    thanksView.setText("Thanks:\nMaciej Haudek <kontakt@haudek.com>");
+    thanksView.setText(R.string.thanks);
     thanksView.setTextSize(15);
     thanksView.setPadding(0, Utils.dp2Px(context, 10), 0, Utils.dp2Px(context, 10));
     root.addView(thanksView);
@@ -68,7 +68,7 @@ public class AboutDialog {
     root.addView(line, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.dp2Px(context, 1)));
 
     TextView launcherInfo = new TextView(context);
-    launcherInfo.setText("E-Ink Launcher 是作者君闲暇之作，JDR没桌面，又找不到\n自己满意的，果断自己动手写了一个。\n主要功能：\n1.当然是显示App了\n2.App展示密度调整\n3.App名称字体大小调整\n4.卸载/隐藏App\n5.一键锁屏\n6.一键开关WIFI\n7.可以换图标了，长按图标会出现包名，把图标重命名成包名+文件后缀，然后连接电脑放到E-Ink Launcher/icon 下就可以了\nPS：图标长按有惊喜");
+    launcherInfo.setText(R.string.launcher_info);
     launcherInfo.setTextColor(0xff000000);
     launcherInfo.setTextSize(14);
     root.addView(launcherInfo);
