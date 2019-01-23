@@ -2,14 +2,12 @@ package cn.modificator.launcher.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import cn.modificator.launcher.Config;
 import cn.modificator.launcher.widgets.EInkLauncherView;
@@ -30,8 +28,20 @@ public class AppDataCenter {
   TextView pageStatus;
   private Set<String> hideApps = new HashSet<>();
 
+  private Comparator<ResolveInfo> comp;
+
   public AppDataCenter(Context context) {
     this.mContext = context;
+
+    comp = new Comparator<ResolveInfo>() {
+      Comparator<ResolveInfo> dispNameCmp = new ResolveInfo.DisplayNameComparator(mContext.getPackageManager());
+
+      @Override
+      public int compare(ResolveInfo o1, ResolveInfo o2) {
+        return dispNameCmp.compare(o1, o2);
+      }
+    };
+
     mApps = new ArrayList<>();
 //        loadApps();
   }
@@ -59,6 +69,8 @@ public class AppDataCenter {
     this.hideApps.clear();
     this.hideApps.addAll(hideApps);
     loadApps();
+
+    sortAppList();
   }
 
   public Set<String> getHideApps() {
@@ -124,8 +136,16 @@ public class AppDataCenter {
   public void refreshAppList(boolean showAll) {
     if (showAll) loadAllApps();
     else loadApps();
+
+    sortAppList();
+
     setPageShow();
   }
+
+  private void sortAppList() {
+    Collections.sort(mApps, comp);
+  }
+
 /*
     public void addAppInfo(ResolveInfo info) {
         mApps.add(info);
