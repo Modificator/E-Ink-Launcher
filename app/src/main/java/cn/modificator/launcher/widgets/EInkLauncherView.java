@@ -325,7 +325,9 @@ public class EInkLauncherView extends ViewGroup {
       Intent intent = new Intent();
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
       intent.addCategory(Intent.CATEGORY_LAUNCHER);
+      intent.setAction(Intent.ACTION_MAIN);
       intent.setComponent(componentName);
+      intent.setPackage(info.activityInfo.packageName);
       v.getContext().startActivity(intent);
 
     }
