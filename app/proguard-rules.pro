@@ -1,30 +1,97 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /home/mod/Android/Sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# Add any project specific keep options here:
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
--keep public class cn.modificator.launcher.R$*{
-    public static final int *;
+-keep,allowshrinking,allowoptimization class cn.modificator.launcher.** {
+  *;
 }
--keep class org.apache.** {*;}
--keep interface org.apache.** {*;}
--dontwarn org.apache.**
--dontwarn org.slf4j.**
 
--keeppackagenames doNotKeepAThing
--renamesourcefileattribute SourceFile
--keepattributes LineNumberTable,SourceFile
+-keep class cn.modificator.launcher.BaseRecyclerViewFastScrollBar {
+  public void setThumbWidth(int);
+  public int getThumbWidth();
+  public void setTrackWidth(int);
+  public int getTrackWidth();
+}
 
--repackageclasses ''
+-keep class cn.modificator.launcher.BaseRecyclerViewFastScrollPopup {
+  public void setAlpha(float);
+  public float getAlpha();
+}
+
+-keep class cn.modificator.launcher.ButtonDropTarget {
+  public int getTextColor();
+}
+
+-keep class cn.modificator.launcher.CellLayout {
+  public float getBackgroundAlpha();
+  public void setBackgroundAlpha(float);
+}
+
+-keep class cn.modificator.launcher.CellLayout$LayoutParams {
+  public void setWidth(int);
+  public int getWidth();
+  public void setHeight(int);
+  public int getHeight();
+  public void setX(int);
+  public int getX();
+  public void setY(int);
+  public int getY();
+}
+
+-keep class cn.modificator.launcher.dragndrop.DragLayer$LayoutParams {
+  public void setWidth(int);
+  public int getWidth();
+  public void setHeight(int);
+  public int getHeight();
+  public void setX(int);
+  public int getX();
+  public void setY(int);
+  public int getY();
+}
+
+-keep class cn.modificator.launcher.FastBitmapDrawable {
+  public void setDesaturation(float);
+  public float getDesaturation();
+  public void setBrightness(float);
+  public float getBrightness();
+}
+
+-keep class cn.modificator.launcher.PreloadIconDrawable {
+  public float getAnimationProgress();
+  public void setAnimationProgress(float);
+}
+
+-keep class cn.modificator.launcher.pageindicators.CaretDrawable {
+  public float getCaretProgress();
+  public void setCaretProgress(float);
+}
+
+-keep class cn.modificator.launcher.Workspace {
+  public float getBackgroundAlpha();
+  public void setBackgroundAlpha(float);
+}
+
+-keep class com.google.android.libraries.launcherclient.* {
+  *;
+}
+
+-keep,allowshrinking,allowoptimization class me.jfenn.attribouter.** {
+ *;
+}
+
+-dontwarn javax.**
+-dontwarn org.codehaus.mojo.animal_sniffer.**
+
+-keep class cn.modificator.launcher.DeferredHandler {
+ *;
+}
+
+# Proguard will strip new callbacks in LauncherApps.Callback from
+# WrappedCallback if compiled against an older SDK. Don't let this happen.
+-keep class cn.modificator.launcher.compat.** {
+  *;
+}
+
+-keep class cn.modificator.launcher.HiddenAppsFragment {
+  *;
+}
+
+-keep class cn.modificator.launcher.preferences.ShortcutBlacklistFragment {
+  *;
+}
