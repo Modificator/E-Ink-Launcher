@@ -31,9 +31,9 @@ android {
         }
         debug {
             debuggable true
-            zipAlignEnabled true
-            minifyEnabled true
-            shrinkResources true
+            zipAlignEnabled false
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
@@ -62,8 +62,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.core:core:1.0.0'
-    implementation 'androidx.documentfile:documentfile:1.0.0'
+    implementation 'androidx.core:core:1.0.1'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'org.apache.ftpserver:ftplet-api:1.1.0'
     implementation 'org.apache.ftpserver:ftpserver-core:1.1.0'
 }
