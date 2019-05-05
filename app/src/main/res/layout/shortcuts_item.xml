@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.modificator.launcher.shortcuts.ShortcutsItemView
+    android:layout_width="@dimen/bg_popup_item_width"
+    android:layout_height="wrap_content"
+    android:translationZ="1px"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/deep_shortcuts"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+</cn.modificator.launcher.shortcuts.ShortcutsItemView>

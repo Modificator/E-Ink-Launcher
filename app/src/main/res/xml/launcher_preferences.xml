@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen android:title="Settings"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <cn.modificator.launcher.settings.ui.SubPreference
+        android:title="@string/pixel_ui_pref_title"
+        android:summary="@string/pixel_ui_pref_summary"
+        android:icon="@drawable/ic_ui"
+        app:content="@xml/launcher_theme_preferences" />
+
+    <cn.modificator.launcher.settings.ui.SubPreference
+        android:icon="@drawable/ic_desktop"
+        android:summary="@string/general_pref_summary"
+        android:title="@string/general_pref_title"
+        app:content="@xml/launcher_desktop_preferences" />
+
+    <cn.modificator.launcher.settings.ui.SubPreference
+        android:title="@string/behavior_pref_title"
+        android:summary="@string/behavior_pref_summary"
+        android:icon="@drawable/ic_behavior"
+        app:content="@xml/launcher_behavior_preferences" />
+
+    <Preference
+        android:key="backups"
+        android:title="@string/backups"
+        android:summary="@string/backup_pref_summary"
+        android:icon="@drawable/ic_import_export">
+
+        <intent
+            android:targetPackage="@string/application_id"
+            android:targetClass="cn.modificator.launcher.backup.BackupListActivity"/>
+    </Preference>
+
+    <cn.modificator.launcher.settings.ui.SubPreference
+        android:title="@string/debug_pref_title"
+        android:summary="@string/debug_pref_summary"
+        android:icon="@drawable/ic_debug"
+        app:content="@xml/launcher_debug_preferences"
+        app:longClickContent="@xml/launcher_hidden_preferences" />
+
+
+
+</androidx.preference.PreferenceScreen>

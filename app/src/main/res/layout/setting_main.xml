@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right|bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_dialog_border"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/MenuItemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_pack_preference_title" />
+
+        <include layout="@layout/divider" />
+
+        <TextView
+            style="@style/MenuItemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="行" />
+
+        <include layout="@layout/divider" />
+
+        <TextView
+            style="@style/MenuItemTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="列" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/bottom_bar_height"
+            android:layout_height="@dimen/bottom_bar_height"
+            android:layout_gravity="right"
+            android:background="@color/dialog_background"
+            android:src="@drawable/ic_setting_close" />
+    </FrameLayout>
+
+
+</LinearLayout>

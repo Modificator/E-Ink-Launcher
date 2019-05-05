@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.preference.PreferenceCategory
+        android:key="prefCat_homeScreen"
+        android:title="@string/pref_category_icons">
+
+        <cn.modificator.launcher.preferences.IconPackPreference
+            android:key="pref_iconPackPackage"
+            android:persistent="true"
+            android:summary="@string/icon_pack_preference_summary"
+            android:title="@string/icon_pack_preference_title" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pref_pixelStyleIcons"
+            android:persistent="true"
+            android:summary="@string/pixel_style_icons_pref_summary"
+            android:title="@string/pixel_style_icons_pref_title" />
+
+        <ListPreference
+            android:entries="@array/icon_shape_override_paths_names"
+            android:entryValues="@array/icon_shape_override_paths_values"
+            android:key="pref_override_icon_shape"
+            android:persistent="false"
+            android:summary="%s"
+            android:title="@string/icon_shape_override_label" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pref_animatedClockIcon"
+            android:persistent="true"
+            android:title="@string/animated_clock_icon_title" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_animatedClockIcon"
+            android:key="pref_animatedClockIconAlternativeClockApps"
+            android:persistent="true"
+            android:summary="@string/animated_clock_icon_alternative_clock_apps_summary"
+            android:title="@string/animated_clock_icon_alternative_clock_apps_title" />
+    </androidx.preference.PreferenceCategory>
+    
+
+
+</androidx.preference.PreferenceScreen>
