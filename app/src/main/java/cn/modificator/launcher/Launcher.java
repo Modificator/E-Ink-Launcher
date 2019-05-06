@@ -32,6 +32,8 @@ import cn.modificator.launcher.widgets.EInkLauncherView;
  */
 public class Launcher extends Activity {
 
+  public static final String TAG = "Launcher";
+
   public static final String ROW_NUM_KEY = "rowNumKey";
   public static final String COL_NUM_KEY = "colNumKey";
   public static final String HIDE_APPS_KEY = "hideAppsKey";
