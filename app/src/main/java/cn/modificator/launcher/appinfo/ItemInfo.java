@@ -22,7 +22,10 @@ import android.content.Intent;
 import android.os.Process;
 import android.os.UserHandle;
 
-import com.android.launcher3.util.ContentWriter;
+import cn.modificator.launcher.LauncherModel;
+import cn.modificator.launcher.LauncherSettings;
+import cn.modificator.launcher.util.ContentWriter;
+
 
 /**
  * Represents an item in the launcher.

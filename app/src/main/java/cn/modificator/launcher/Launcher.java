@@ -68,6 +68,7 @@ public class Launcher extends Activity {
       }
     }
 
+    LauncherAppState app = LauncherAppState.getInstance(this);
 
     isChina = getResources().getConfiguration().locale.getCountry().equals("CN");
     initView();

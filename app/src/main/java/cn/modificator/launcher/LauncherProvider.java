@@ -20,6 +20,7 @@ public class LauncherProvider extends ContentProvider {
 
     public static final int SCHEMA_VERSION = 1;
 
+    public static final String AUTHORITY = "cn.modificator.launcher.settings".intern();
 
     private final ChangeListenerWrapper mListenerWrapper = new ChangeListenerWrapper();
     private Handler mListenerHandler;
