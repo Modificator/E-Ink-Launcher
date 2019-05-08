@@ -80,6 +80,18 @@ public class LauncherProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
 
+            mMaxItemId = 1;
+            mMaxScreenId = 0;
+            addWorkspacesTable(db, false);
+        }
+
+        private void addWorkspacesTable(SQLiteDatabase db, boolean optional) {
+            String ifNotExists = optional ? " IF NOT EXISTS " : "";
+            db.execSQL("CREATE TABLE " + ifNotExists + LauncherSettings.WorkspaceScreens.TABLE_NAME + " (" +
+                    LauncherSettings.WorkspaceScreens._ID + " INTEGER PRIMARY KEY," +
+                    LauncherSettings.WorkspaceScreens.SCREEN_RANK + " INTEGER," +
+                    LauncherSettings.ChangeLogColumns.MODIFIED + " INTEGER NOT NULL DEFAULT 0" +
+                    ");");
         }
 
         @Override
