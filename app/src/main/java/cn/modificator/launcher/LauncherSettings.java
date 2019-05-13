@@ -99,7 +99,7 @@ public class LauncherSettings {
          * The content:// style URL for this table
          */
         public static final Uri CONTENT_URI = Uri.parse("content://" +
-                LauncherProvider.AUTHORITY + "/" + TABLE_NAME);
+                LauncherProvider.Companion.getAUTHORITY() + "/" + TABLE_NAME);
 
         /**
          * The rank of this screen -- ie. how it is ordered relative to the other screens.
@@ -119,7 +119,7 @@ public class LauncherSettings {
          * The content:// style URL for this table
          */
         public static final Uri CONTENT_URI = Uri.parse("content://" +
-                LauncherProvider.AUTHORITY + "/" + TABLE_NAME);
+                LauncherProvider.Companion.getAUTHORITY() + "/" + TABLE_NAME);
 
         /**
          * The content:// style URL for a given row, identified by its id.
@@ -129,7 +129,7 @@ public class LauncherSettings {
          * @return The unique content URL for the specified row.
          */
         public static Uri getContentUri(long id) {
-            return Uri.parse("content://" + LauncherProvider.AUTHORITY +
+            return Uri.parse("content://" + LauncherProvider.Companion.getAUTHORITY() +
                     "/" + TABLE_NAME + "/" + id);
         }
 
@@ -290,7 +290,7 @@ public class LauncherSettings {
     public static final class Settings {
 
         public static final Uri CONTENT_URI = Uri.parse("content://" +
-                LauncherProvider.AUTHORITY + "/settings");
+                LauncherProvider.Companion.getAUTHORITY() + "/settings");
 
         public static final String METHOD_CLEAR_EMPTY_DB_FLAG = "clear_empty_db_flag";
         public static final String METHOD_WAS_EMPTY_DB_CREATED = "get_empty_db_flag";
