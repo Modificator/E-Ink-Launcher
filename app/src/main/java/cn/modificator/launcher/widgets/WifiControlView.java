@@ -16,6 +16,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -173,7 +174,18 @@ public class WifiControlView extends FrameLayout implements Observer {
             case CONNECTED:
               Log.e("APActivity", "CONNECTED");
 //                            appName.setSingleLine(false);
-              appName.setText(getResources().getString(R.string.wifi_status_connected, networkInfo.getExtraInfo().replaceFirst("\"", "\n").replace("\"", "")));
+              String wifiName = "";
+              if (networkInfo.getExtraInfo()!=null) {
+                wifiName = networkInfo.getExtraInfo().replace("\"", "");
+              }
+              if (wifiName.isEmpty()){
+                wifiName = wifiManager.getConnectionInfo().getSSID().replace("\"","");
+              }
+              if (!TextUtils.isEmpty(wifiName)){
+                wifiName = "\n"+wifiName;
+              }
+                appName.setText(getResources().getString(R.string.wifi_status_connected, wifiName));
+
               break;
             case CONNECTING:
               Log.e("APActivity", "CONNECTING");

@@ -157,6 +157,7 @@ public class FTPService extends Service implements Runnable {
       server.start();
       sendBroadcast(new Intent(FTPService.ACTION_STARTED));
     } catch (Exception e) {
+      e.printStackTrace();
       sendBroadcast(new Intent(FTPService.ACTION_FAILEDTOSTART));
     }
   }

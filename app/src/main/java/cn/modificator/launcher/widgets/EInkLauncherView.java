@@ -15,6 +15,7 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,8 +30,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Observer;
 import java.util.Set;
 
+import cn.modificator.launcher.Config;
 import cn.modificator.launcher.Launcher;
 import cn.modificator.launcher.R;
 import cn.modificator.launcher.Utils;
@@ -121,6 +124,23 @@ public class EInkLauncherView extends ViewGroup {
   @Override
   protected void onLayout(boolean changed, int l, int t, int r, int b) {
     dragDistance = Math.min(getMeasuredWidth(), getMeasuredHeight()) / 6f;
+
+    for (int i = 0; i < ROW_NUM; i++) {
+      for (int j = 0; j < COL_NUM; j++) {
+                /*if (COL_NUM * i + j == dataList.size())
+                    break AddView;*/
+        int childLeft = j * getItemWidth();// + (j * dividerSize);
+        int childRight = (j + 1) * getItemWidth();// + (j * dividerSize);
+        int childTop = i * getItemHeight();// + (i * dividerSize);
+        int childBottom = (i + 1) * getItemHeight();// + (i * dividerSize);
+//                view.measure(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+        getChildAt(i*COL_NUM+j).layout(childLeft, childTop, childRight, childBottom);
+      }
+    }
+    if (dragDistance>0){
+      return;
+    }
     observable.deleteObservers();
     removeAllViews();
     AddView:
@@ -134,8 +154,7 @@ public class EInkLauncherView extends ViewGroup {
         int childTop = i * getItemHeight();// + (i * dividerSize);
         int childBottom = (i + 1) * getItemHeight();// + (i * dividerSize);
 //                view.measure(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        view.measure(makeMeasureSpec(getItemWidth(), EXACTLY),
-            makeMeasureSpec(getItemHeight(), EXACTLY));
+
         view.layout(childLeft, childTop, childRight, childBottom);
         if (COL_NUM * i + j >= dataList.size()) {
           if (COL_NUM * i + j == dataList.size()) {
@@ -254,10 +273,79 @@ public class EInkLauncherView extends ViewGroup {
     }
   }
 
+  private void resetIconLayout(){
+    observable.deleteObservers();
+    removeAllViews();
+    for (int i = 0; i < ROW_NUM * COL_NUM; i++) {
+      View itemView = LayoutInflater.from(getContext()).inflate(R.layout.launcher_item, this, false);
+      observable.addObserver((Observer) itemView.findViewById(R.id.appName));
+      ((TextView)itemView.findViewById(R.id.appName)).setTextSize(TypedValue.COMPLEX_UNIT_SP, Config.fontSize);
+
+      if (hideDivider) {
+        itemView.setBackgroundResource(R.drawable.app_item_final);
+        } else if (i==ROW_NUM*COL_NUM-1) {
+        itemView.setBackgroundResource(R.drawable.app_item_final);
+      }else if (i%COL_NUM==COL_NUM-1){
+        itemView.setBackgroundResource(R.drawable.app_item_right);
+      }else if (i>(ROW_NUM-1)*COL_NUM-1){
+        itemView.setBackgroundResource(R.drawable.app_item_bottom);
+      } else{
+        itemView.setBackgroundResource(R.drawable.app_item_normal);
+      }
+//      if (COL_NUM * i + j < dataList.size() + 2) {
+//        if (hideDivider) {
+//          view.setBackgroundResource(R.drawable.app_item_final);
+//        } else if (j == COL_NUM - 1 && i == ROW_NUM - 1) {
+//          view.setBackgroundResource(R.drawable.app_item_final);
+//        } else if (j == COL_NUM - 1)
+//          view.setBackgroundResource(R.drawable.app_item_right);
+//        else if (i == ROW_NUM - 1)
+//          view.setBackgroundResource(R.drawable.app_item_bottom);
+//        else if (!hideDivider)
+//          view.setBackgroundResource(R.drawable.app_item_normal);
+//      }
+      addView(itemView);
+    }
+    refreshIconData();
+  }
+
+  private void refreshIconData(){
+    int position;
+    View itemView;
+    for (int i = 0; i < ROW_NUM; i++) {
+      for (int j = 0; j < COL_NUM; j++) {
+        position = i*COL_NUM+j;
+        itemView = getChildAt(position);
+        if (itemView == null) {
+          return;
+        }
+        if (position<dataList.size()&&position<getChildCount()) {
+          if (iconReplacePkg.contains(dataList.get(COL_NUM * i + j).activityInfo.packageName)) {
+            ((ImageView) itemView.findViewById(R.id.appImage)).setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(dataList.get(COL_NUM * i + j).activityInfo.packageName))));
+          } else {
+            ((ImageView) itemView.findViewById(R.id.appImage)).setImageDrawable(dataList.get(COL_NUM * i + j).loadIcon(packageManager));
+          }
+          ((TextView) itemView.findViewById(R.id.appName)).setText(dataList.get(COL_NUM * i + j).loadLabel(packageManager));
+          itemView.setOnClickListener(new ItemClickListener(COL_NUM * i + j));
+          itemView.setOnLongClickListener(new ItemLongClickListener(COL_NUM * i + j));
+          itemView.findViewById(R.id.menu_delete).setOnClickListener(new ItemClickListener(COL_NUM * i + j));
+          itemView.findViewById(R.id.menu_hide).setOnClickListener(new ItemHideClickListener(COL_NUM * i + j));
+          itemView.setVisibility(VISIBLE);
+        }else{
+          ((TextView) itemView.findViewById(R.id.appName)).setText("");
+          ((ImageView) itemView.findViewById(R.id.appImage)).setImageDrawable(null);
+          itemView.setLongClickable(false);
+          itemView.setClickable(false);
+          itemView.setVisibility(GONE);
+        }
+      }
+    }
+  }
+
   public void setAppList(List<ResolveInfo> appList) {
     dataList.clear();
     dataList.addAll(appList);
-    requestLayout();
+    refreshIconData();
   }
 
 
@@ -274,12 +362,12 @@ public class EInkLauncherView extends ViewGroup {
 
   public void setColNum(int colNum) {
     this.COL_NUM = colNum;
-    requestLayout();
+    resetIconLayout();
   }
 
   public void setRowNum(int rowNum) {
     this.ROW_NUM = rowNum;
-    requestLayout();
+    resetIconLayout();
   }
 
   private int getAdjustedHeight() {
@@ -304,6 +392,12 @@ public class EInkLauncherView extends ViewGroup {
     int width = MeasureSpec.getSize(widthMeasureSpec);
     int height = MeasureSpec.getSize(heightMeasureSpec);
     setMeasuredDimension(width, height);
+
+    int itemWidthMeasureSpec =makeMeasureSpec(getItemWidth(),EXACTLY);
+    int itemHeightMeasureSpec = makeMeasureSpec(getItemHeight(),EXACTLY);
+    for (int i = 0; i < getChildCount(); i++) {
+      getChildAt(i).measure(itemWidthMeasureSpec,itemHeightMeasureSpec );
+    }
   }
 
   private class ItemClickListener implements OnClickListener {

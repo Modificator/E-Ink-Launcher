@@ -1,5 +1,6 @@
 package cn.modificator.launcher;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
@@ -12,16 +13,20 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
 import java.util.Calendar;
 
+import cn.modificator.launcher.ftpservice.FTPReceiver;
+import cn.modificator.launcher.ftpservice.FTPService;
 import cn.modificator.launcher.model.AdminReceiver;
 import cn.modificator.launcher.model.AppDataCenter;
 import cn.modificator.launcher.widgets.BatteryView;
@@ -54,6 +59,7 @@ public class Launcher extends Activity {
   DevicePolicyManager policyManager;
   File iconFile;
   boolean isChina = true;
+  FTPReceiver ftpReceiver = new FTPReceiver();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +72,8 @@ public class Launcher extends Activity {
       }
     }
 
-
     isChina = getResources().getConfiguration().locale.getCountry().equals("CN");
+
     initView();
     //Log.e("----",Arrays.toString(iconFile.list()));
   }
@@ -85,15 +91,16 @@ public class Launcher extends Activity {
 //        launcherView.setIconReplaceFile(Arrays.asList(iconFile.list()));
     launcherView.setHideAppPkg(config.getHideApps());
     launcherView.setHideDivider(config.getDividerHideStatus());
+    launcherView.setFontSize(config.getFontSize());
 
     dataCenter = new AppDataCenter(this);
     dataCenter.setHideApps(config.getHideApps());
+
     dataCenter.setPageStatus(pageStatus);
     dataCenter.setLauncherView(launcherView);
     //加载之前保存的桌面数据
     updateColNum(config.getColNum());
     updateRowNum(config.getRowNum());
-    launcherView.setFontSize(config.getFontSize());
 
     findViewById(R.id.lastPage).setOnClickListener(new View.OnClickListener() {
       @Override
@@ -166,14 +173,14 @@ public class Launcher extends Activity {
   }
 
   private void updateRowNum(int rowNum) {
-    dataCenter.setRowNum(rowNum);
     launcherView.setRowNum(rowNum);
+    dataCenter.setRowNum(rowNum);
     config.setRowNum(rowNum);
   }
 
   private void updateColNum(int colNum) {
-    dataCenter.setColNum(colNum);
     launcherView.setColNum(colNum);
+    dataCenter.setColNum(colNum);
     config.setColNum(colNum);
   }
 
@@ -206,6 +213,12 @@ public class Launcher extends Activity {
     if (launcherView != null) launcherView.refreshReplaceIcon();
     detectionUSB();
 
+    IntentFilter ftpIntentFilter = new IntentFilter(FTPService.ACTION_START_FTPSERVER);
+    ftpIntentFilter.addAction(FTPService.ACTION_STOP_FTPSERVER);
+    registerReceiver(ftpReceiver,ftpIntentFilter);
+//    if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+//      requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},0 );
+//    }
   }
 
   /**
@@ -239,7 +252,7 @@ public class Launcher extends Activity {
     unregisterReceiver(batteryLevelRcvr);
     unregisterReceiver(timeListener);
     unregisterReceiver(usbReceiver);
-
+    unregisterReceiver(ftpReceiver);
   }
 
   @Override

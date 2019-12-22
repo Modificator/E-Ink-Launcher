@@ -33,6 +33,6 @@ public class ObserverFontTextView extends TextView implements Observer {
   @Override
   public void update(Observable o, Object arg) {
     setTextSize(TypedValue.COMPLEX_UNIT_SP, (Float) arg);
-    requestLayout();
+//    requestLayout();
   }
 }
