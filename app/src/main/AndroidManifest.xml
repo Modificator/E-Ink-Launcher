@@ -14,8 +14,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SHUTDOWN" />
     <uses-permission android:name="android.permission.REBOOT" />
-<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
-<!--    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN"/>-->
+    <uses-permission android:name="android.permission.DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:name=".App"
@@ -33,17 +34,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category
+                    android:name="com.yotadevices.intent.category.EPD_HOME" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".filemanager.FileManager"
-            android:icon="@mipmap/file_manager"
-            android:label="@string/file_manager">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <meta-data android:name="com.yotadevices.keep_on_epd_screen" android:value="true"/>
         </activity>
 
         <service
@@ -64,14 +58,19 @@
         <receiver
             android:name=".ftpservice.FTPReceiver"
             android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="cn.modificator.launcher.ftpservice.FTPReceiver.ACTION_START_FTPSERVER" />-->
-<!--                <action android:name="cn.modificator.launcher.ftpservice.FTPReceiver.ACTION_STOP_FTPSERVER" />-->
-<!--            </intent-filter>-->
         </receiver>
+        
+        <provider
+            android:authorities="${applicationId}.fileProvider"
+            android:grantUriPermissions="true"
+            android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/filepath"/>
+        </provider>
 
         <activity android:name=".CrashDetailPage"
-            android:process=":crash_page"/>
+            android:process=":crash_page">
+            <meta-data android:name="com.yotadevices.keep_on_epd_screen" android:value="true"/>
+        </activity>
     </application>
 
 </manifest>

@@ -1,8 +1,12 @@
 package cn.modificator.launcher;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.core.graphics.drawable.DrawableCompat;
 
@@ -14,7 +18,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import cn.modificator.launcher.filemanager.FileComparator;
 
 /**
  * Created by mod on 16-5-6.
@@ -25,18 +28,6 @@ public class Utils {
     final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
     DrawableCompat.setTintList(wrappedDrawable, colors);
     return wrappedDrawable;
-  }
-
-  public static List<File> getFileListByDirPath(File path) {
-    File[] files = path.listFiles();
-
-    if (files == null) {
-      return new ArrayList<>();
-    }
-
-    List<File> result = Arrays.asList(files);
-    Collections.sort(result, new FileComparator());
-    return result;
   }
 
   public static String getReadableFileSize(long size) {
@@ -100,5 +91,14 @@ public class Utils {
   private static final String[] sAmPmCN = new String[]{
       "凌晨", "黎明", "早晨", "上午", "中午", "下午", "晚上", "深夜"
   };
+
+  public static void checkStroagePermission(Activity activity,Runnable next){
+    String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED) {
+      activity.requestPermissions(permissions,10003);
+    }else if(next!=null){
+      next.run();
+    }
+  }
 
 }

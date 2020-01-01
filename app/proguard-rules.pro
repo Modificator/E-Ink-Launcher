@@ -15,16 +15,19 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
 -keep public class cn.modificator.launcher.R$*{
     public static final int *;
 }
--keep class org.apache.** {*;}
--keep interface org.apache.** {*;}
--dontwarn org.apache.**
--dontwarn org.slf4j.**
+#-keep class org.apache.** {*;}
+#-keep interface org.apache.** {*;}
+#-dontwarn org.apache.**
+#-dontwarn org.slf4j.**
 
 -keeppackagenames doNotKeepAThing
 -renamesourcefileattribute SourceFile
 -keepattributes LineNumberTable,SourceFile
 
 -repackageclasses ''
+
+-optimizationpasses 10

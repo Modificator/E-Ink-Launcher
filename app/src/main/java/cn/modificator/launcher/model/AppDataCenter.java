@@ -2,6 +2,7 @@ package cn.modificator.launcher.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import cn.modificator.launcher.Config;
+import cn.modificator.launcher.R;
 import cn.modificator.launcher.widgets.EInkLauncherView;
 
 /**
@@ -29,6 +31,9 @@ public class AppDataCenter {
   EInkLauncherView launcherView;
   TextView pageStatus;
   private Set<String> hideApps = new HashSet<>();
+
+  public static final String wifiPackageName = "E-ink_Launcher.WiFi";
+  public static final String oneKeyLockPackageName = "E-ink_Launcher.Lock";
 
   public AppDataCenter(Context context) {
     this.mContext = context;
@@ -80,6 +85,10 @@ public class AppDataCenter {
         mApps.add(resolveInfo);
       }
     }
+    if (!hideApps.contains(oneKeyLockPackageName))
+      mApps.add(createPowerIcon());
+    if (!hideApps.contains(wifiPackageName))
+      mApps.add(createWifiIcon());
 //        mApps.addAll();
     updatePageCount();
   }
@@ -89,6 +98,8 @@ public class AppDataCenter {
     mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
     mApps.clear();
     mApps.addAll(mContext.getPackageManager().queryIntentActivities(mainIntent, 0));
+    mApps.add(createPowerIcon());
+    mApps.add(createWifiIcon());
     launcherView.setHideAppPkg(hideApps);
     updatePageCount();
   }
@@ -167,4 +178,20 @@ public class AppDataCenter {
     public void removeHide(String pkg) {
         hideApps.remove(pkg);
     }*/
+
+   private ResolveInfo createWifiIcon(){
+     ResolveInfo resolveInfo  = new ResolveInfo();
+     resolveInfo.icon = R.drawable.wifi_on;
+     resolveInfo.activityInfo = new ActivityInfo();
+     resolveInfo.activityInfo.packageName = wifiPackageName;
+     return resolveInfo;
+   }
+
+   private ResolveInfo createPowerIcon(){
+     ResolveInfo resolveInfo = new ResolveInfo();
+     resolveInfo.icon = R.drawable.ic_onekeylock;
+     resolveInfo.activityInfo = new ActivityInfo();
+     resolveInfo.activityInfo.packageName =oneKeyLockPackageName;
+     return resolveInfo;
+   }
 }

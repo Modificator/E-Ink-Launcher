@@ -1,6 +1,5 @@
 package cn.modificator.launcher;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
@@ -13,22 +12,24 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.os.BatteryManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import cn.modificator.launcher.ftpservice.FTPReceiver;
 import cn.modificator.launcher.ftpservice.FTPService;
 import cn.modificator.launcher.model.AdminReceiver;
 import cn.modificator.launcher.model.AppDataCenter;
+import cn.modificator.launcher.model.WifiControl;
 import cn.modificator.launcher.widgets.BatteryView;
 import cn.modificator.launcher.widgets.EInkLauncherView;
 
@@ -41,13 +42,15 @@ public class Launcher extends Activity {
   public static final String COL_NUM_KEY = "colNumKey";
   public static final String HIDE_APPS_KEY = "hideAppsKey";
   public static final String DELETEAPP = "deleteApp";
+  public static final String LAUNCHER_SHOW_STATUS_BAR = "launcherShowStatusBar";
+  public static final String LAUNCHER_SHOW_CUSTOM_ICON= "launcherShowCustomIcon";
   public static final String LAUNCHER_ACTION = "launcherReceiver";
   public static final String LAUNCHER_FONT_SIZE = "launcherFontSize";
   public static final String LAUNCHER_HIDE_DIVIDER = "launcherHideDivider";
 
   EInkLauncherView launcherView;
   AppDataCenter dataCenter = null;
-  Config config = new Config(this);
+  Config config;
   LauncherUpdateReceiver updateReceiver;
   TextView pageStatus;
   BatteryView batteryProgress;
@@ -65,6 +68,9 @@ public class Launcher extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.launcher_activity);
+    config = new Config(this);
+    WifiControl.init(this);
+    toggleStatusBar();
     if (getExternalCacheDir() != null) {
       iconFile = new File(getExternalCacheDir().getParentFile().getParentFile().getParentFile().getParentFile(), "E-Ink Launcher" + File.separator + "icon");
       if (!iconFile.exists()) {
@@ -117,8 +123,6 @@ public class Launcher extends Activity {
     findViewById(R.id.toSetting).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), SettingActivity.class);
-//                startActivity(intent);
         getFragmentManager().beginTransaction()
             .replace(android.R.id.content, new SettingFramgent())
             .addToBackStack(null)
@@ -216,9 +220,6 @@ public class Launcher extends Activity {
     IntentFilter ftpIntentFilter = new IntentFilter(FTPService.ACTION_START_FTPSERVER);
     ftpIntentFilter.addAction(FTPService.ACTION_STOP_FTPSERVER);
     registerReceiver(ftpReceiver,ftpIntentFilter);
-//    if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-//      requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},0 );
-//    }
   }
 
   /**
@@ -242,7 +243,7 @@ public class Launcher extends Activity {
         timeFormatTextBuilder.append(" a");
       }
       timeFormatTextBuilder.append(" EEEE");
-      textClock.setText(DateFormat.format(timeFormatTextBuilder.toString(), mCalendar));
+      textClock.setText(new SimpleDateFormat(timeFormatTextBuilder.toString(), Locale.getDefault()).format(mCalendar.getTime()));
     }
   }
 
@@ -288,6 +289,12 @@ public class Launcher extends Activity {
       } else if (bundle.containsKey(LAUNCHER_HIDE_DIVIDER)) {
         launcherView.setHideDivider(bundle.getBoolean(LAUNCHER_HIDE_DIVIDER));
         config.setDividerHideStatus(bundle.getBoolean(LAUNCHER_HIDE_DIVIDER));
+      }else if (bundle.containsKey(LAUNCHER_SHOW_STATUS_BAR)){
+        config.setStatusBarShowStatus(bundle.getBoolean(LAUNCHER_SHOW_STATUS_BAR));
+        toggleStatusBar();
+      }else if (bundle.containsKey(LAUNCHER_SHOW_CUSTOM_ICON)){
+        config.setCustomIconShowStatus(bundle.getBoolean(LAUNCHER_SHOW_CUSTOM_ICON));
+        launcherView.refreshReplaceIcon();
       }
     }
   }
@@ -410,14 +417,19 @@ public class Launcher extends Activity {
     Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
     intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, new ComponentName(this, AdminReceiver.class));
     intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "E-Ink Launcher 获取锁屏权限");
-    startActivityForResult(intent, 10001);
+    startActivity(intent);
+//    startActivityForResult(intent, 10001);
   }
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == 10001 && resultCode == RESULT_OK) {
-      policyManager.lockNow();
+    if (resultCode == RESULT_OK) {
+      switch (requestCode) {
+        case 10001:
+          policyManager.lockNow();
+          break;
+      }
     }
   }
 
@@ -431,5 +443,14 @@ public class Launcher extends Activity {
 
   public boolean isUserApp(PackageInfo pInfo) {
     return (!isSystemApp(pInfo) && !isSystemUpdateApp(pInfo));
+  }
+
+  public void toggleStatusBar(){
+    int windowFlags= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+    if (Config.showStatusBar){
+      getWindow().setFlags(windowFlags,windowFlags);
+    }else{
+      getWindow().clearFlags(windowFlags);
+    }
   }
 }

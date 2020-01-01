@@ -1,5 +1,6 @@
 package cn.modificator.launcher;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,9 +20,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import java.util.Observable;
 
 import cn.modificator.launcher.ftpservice.FTPService;
+import cn.modificator.launcher.model.WifiControl;
 
 /**
  * Created by mod on 16-5-3.
@@ -30,7 +35,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
   Spinner row_num_spinner;
   SeekBar font_control;
   View rootView;
-  TextView hideDivider, ftpAddr, ftpStatus;
+  TextView hideDivider, ftpAddr, ftpStatus,showStatusBar,showCustomIcon;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -49,16 +54,24 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
     rootView.findViewById(R.id.toBack).setOnClickListener(this);
     rootView.findViewById(R.id.rootView).setOnClickListener(this);
     rootView.findViewById(R.id.deleteApp).setOnClickListener(this);
-    ftpStatus = (TextView) rootView.findViewById(R.id.ftp_status);
-    ftpAddr = (TextView) rootView.findViewById(R.id.ftp_addr);
-    hideDivider = (TextView) rootView.findViewById(R.id.hideDivider);
+    rootView.findViewById(R.id.showWifiName).setOnClickListener(this);
+    showStatusBar = rootView.findViewById(R.id.showStatusBar);
+    showCustomIcon = rootView.findViewById(R.id.showCustomIcon);
+    ftpStatus = rootView.findViewById(R.id.ftp_status);
+    ftpAddr = rootView.findViewById(R.id.ftp_addr);
+    hideDivider = rootView.findViewById(R.id.hideDivider);
+    font_control = rootView.findViewById(R.id.font_control);
+    col_num_spinner = rootView.findViewById(R.id.col_num_spinner);
+    row_num_spinner = rootView.findViewById(R.id.row_num_spinner);
+
+    showStatusBar.setOnClickListener(this);
     hideDivider.setOnClickListener(this);
-    hideDivider.setText(Config.hideDivider ? R.string.setting_show_divider : R.string.setting_hide_divider);
-    font_control = (SeekBar) rootView.findViewById(R.id.font_control);
-    col_num_spinner = (Spinner) rootView.findViewById(R.id.col_num_spinner);
-    row_num_spinner = (Spinner) rootView.findViewById(R.id.row_num_spinner);
+    showCustomIcon.setOnClickListener(this);
+    showStatusBar.getPaint().setStrikeThruText(Config.showStatusBar);
+    hideDivider.getPaint().setStrikeThruText(Config.hideDivider);
     row_num_spinner.setSelection(Config.rowNum - 2, false);
     font_control.setProgress((int) ((Config.fontSize - 10) * 10));
+    showCustomIcon.getPaint().setStrikeThruText(Config.showCustomIcon);
 
     row_num_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
@@ -132,6 +145,14 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
         getActivity().sendBroadcast(intent);
         getActivity().onBackPressed();
         break;
+      case R.id.showStatusBar:
+        Config.showStatusBar = !Config.showStatusBar;
+
+        intent = new Intent(Launcher.LAUNCHER_ACTION);
+        intent.putExtra(Launcher.LAUNCHER_SHOW_STATUS_BAR,Config.showStatusBar);
+        getActivity().sendBroadcast(intent);
+        getActivity().onBackPressed();
+        break;
       case R.id.helpAbout:
         AboutDialog.getInstance(getActivity()).show();
         break;
@@ -154,15 +175,46 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
         getActivity().onBackPressed();
         break;
       case R.id.menu_ftp:
-        if (!FTPService.isRunning()) {
-          if (FTPService.isConnectedToWifi(getActivity()))
-            startServer();
-          else
-            Toast.makeText(getActivity(), "大哥诶，麻烦先把WIFI连上吧", Toast.LENGTH_SHORT).show();
-        } else {
-          stopServer();
+        Utils.checkStroagePermission(getActivity(), new Runnable() {
+          @Override
+          public void run() {
+            if (!FTPService.isRunning()) {
+              if (FTPService.isConnectedToWifi(getActivity()))
+                startServer();
+              else
+                Toast.makeText(getActivity(), "大哥诶，麻烦先把WIFI连上吧", Toast.LENGTH_SHORT).show();
+            } else {
+              stopServer();
+            }
+          }
+        });
+        break;
+      case R.id.showWifiName:
+        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+          requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},10002);
         }
         break;
+      case R.id.showCustomIcon:
+        Utils.checkStroagePermission(getActivity(), new Runnable() {
+          @Override
+          public void run() {
+            Config.showCustomIcon = !Config.showCustomIcon;
+            Intent intent = new Intent(Launcher.LAUNCHER_ACTION);
+            intent.putExtra(Launcher.LAUNCHER_SHOW_CUSTOM_ICON,Config.showCustomIcon);
+            getActivity().sendBroadcast(intent);
+            getActivity().onBackPressed();
+          }
+        });
+        break;
+    }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode==10002){
+      WifiControl.reloadWifiName();
+      getActivity().onBackPressed();
     }
   }
 

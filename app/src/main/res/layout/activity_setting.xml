@@ -277,7 +277,7 @@
 
     <LinearLayout
         android:id="@+id/menuList"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="45dp"
@@ -399,9 +399,57 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:gravity="left|center_vertical"
-            android:text="隐藏分割线"
+            android:text="@string/setting_show_divider"
             android:textSize="16dp" />
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/showStatusBar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/show_statusbar"
+            android:textSize="16dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/showWifiName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/show_wifi_name"
+            android:textSize="16dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/showCustomIcon"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/show_custom_icon"
+            android:textSize="16dp" />
 
         <View
             android:layout_width="match_parent"
@@ -440,8 +488,8 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="@string/setting_apps_manager"
-            tools:text="管理应用"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="管理应用" />
 
         <View
             android:layout_width="match_parent"
@@ -461,7 +509,7 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:text="@string/setting_help_and_about"
-            android:textSize="16dp" />
+                android:textSize="16dp" />
             <!--android:text="帮助 &amp; 关于"-->
 
 
@@ -488,37 +536,27 @@
             android:gravity="center_vertical"
             android:minHeight="45dp"
             android:orientation="vertical"
-            android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/ftp_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="网络传书 （开）"
                 android:text="@string/setting_cloud_manager_wifi_off"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                tools:text="网络传书 （开）" />
 
             <TextView
                 android:id="@+id/ftp_addr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
-                android:text="ftp://192.168.123.121" />
+                tools:text="ftp://192.168.123.121" />
         </LinearLayout>
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="发现BUG了？有好的想法？"
-            android:visibility="invisible" />
     </LinearLayout>
 </FrameLayout>

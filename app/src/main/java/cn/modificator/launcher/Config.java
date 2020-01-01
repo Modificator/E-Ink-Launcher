@@ -17,11 +17,16 @@ public class Config {
   public static int rowNum = -1;
   public static float fontSize = -1;
   public static boolean hideDivider = false;
+  public static boolean showStatusBar = false;
+  public static boolean showCustomIcon = false;
   private String preferencesFileName = "launcherPropertyFile";
   private Set<String> hideApps = new HashSet<>();
 
   public Config(Context context) {
     this.context = context;
+    getCustomIconShowStatus();
+    getDividerHideStatus();
+    getStatusBarShowStatus();
   }
 
   public int getColNum() {
@@ -102,5 +107,23 @@ public class Config {
   public void setDividerHideStatus(boolean b) {
     SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
     preferences.edit().putBoolean(Launcher.LAUNCHER_HIDE_DIVIDER, b).apply();
+  }
+
+  public boolean getStatusBarShowStatus(){
+    return showStatusBar = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE).getBoolean(Launcher.LAUNCHER_SHOW_STATUS_BAR,true);
+  }
+
+  public void setStatusBarShowStatus(boolean b){
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
+    preferences.edit().putBoolean(Launcher.LAUNCHER_SHOW_STATUS_BAR, b).apply();
+  }
+
+  public boolean getCustomIconShowStatus(){
+    return showCustomIcon = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE).getBoolean(Launcher.LAUNCHER_SHOW_CUSTOM_ICON,false);
+  }
+
+  public void setCustomIconShowStatus(boolean b){
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
+    preferences.edit().putBoolean(Launcher.LAUNCHER_SHOW_CUSTOM_ICON, b).apply();
   }
 }

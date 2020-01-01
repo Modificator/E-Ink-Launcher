@@ -68,4 +68,7 @@
     <string name="parent_folder">Parent folder</string>
     <string name="exit">Exit</string>
     <string name="delete">Delete</string>
+    <string name="show_statusbar">Show StatusBar</string>
+    <string name="show_wifi_name">Show Wifi Name</string>
+    <string name="show_custom_icon">Show custom icon</string>
 </resources>
