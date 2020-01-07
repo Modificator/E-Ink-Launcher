@@ -71,4 +71,5 @@
     <string name="show_statusbar">Show StatusBar</string>
     <string name="show_wifi_name">Show Wifi Name</string>
     <string name="show_custom_icon">Show custom icon</string>
+    <string name="notification_click_back_launcher">Click here, back to Launcher</string>
 </resources>

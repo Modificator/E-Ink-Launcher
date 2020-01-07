@@ -70,4 +70,5 @@
     <string name="show_custom_icon">显示自定义图标</string>
     <string name="show_statusbar">显示状态栏</string>
     <string name="show_wifi_name">显示WiFi名字</string>
+    <string name="notification_click_back_launcher">点击这里回到桌面</string>
 </resources>

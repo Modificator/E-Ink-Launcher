@@ -12,7 +12,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,6 +31,7 @@ import cn.modificator.launcher.ftpservice.FTPReceiver;
 import cn.modificator.launcher.ftpservice.FTPService;
 import cn.modificator.launcher.model.AdminReceiver;
 import cn.modificator.launcher.model.AppDataCenter;
+import cn.modificator.launcher.model.HomeEntranceService;
 import cn.modificator.launcher.model.WifiControl;
 import cn.modificator.launcher.widgets.BatteryView;
 import cn.modificator.launcher.widgets.EInkLauncherView;
@@ -82,6 +85,7 @@ public class Launcher extends Activity {
 
     initView();
     //Log.e("----",Arrays.toString(iconFile.list()));
+    checkLaunchHomeNotification();
   }
 
 
@@ -451,6 +455,18 @@ public class Launcher extends Activity {
       getWindow().setFlags(windowFlags,windowFlags);
     }else{
       getWindow().clearFlags(windowFlags);
+    }
+  }
+
+  private void checkLaunchHomeNotification(){
+    if (!TextUtils.equals(Build.DEVICE,"virgo_perf1")){
+      return;
+    }
+    Intent service = new Intent(this, HomeEntranceService.class);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      startForegroundService(service);
+    }else{
+      startService(service);
     }
   }
 }
