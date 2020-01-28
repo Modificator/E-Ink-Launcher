@@ -75,16 +75,12 @@ public class WifiControl {
 
   public static void bind(View view){
     if (view==null){
-      if (instance.appName!=null) {
-        instance.appName.setMaxLines(2);
-      }
       instance.appImage=null;
       instance.appName = null;
       return;
     }
     instance.appName = view.findViewById(R.id.appName);
     instance.appImage = view.findViewById(R.id.appImage);
-    instance.appName.setMaxLines(Integer.MAX_VALUE);
     instance.updateStatus();
   }
 

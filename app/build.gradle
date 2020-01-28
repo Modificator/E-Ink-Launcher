@@ -18,8 +18,8 @@ android {
         applicationId "cn.modificator.launcher"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 22
-        versionName "0.1.8"
+        versionCode 24
+        versionName "0.1.8.2"
         signingConfig signingConfigs.config
     }
     buildTypes {

@@ -464,7 +464,7 @@ public class Launcher extends Activity {
   }
 
   private void checkLaunchHomeNotification(){
-    if (!TextUtils.equals(Build.DEVICE,"virgo_perf1")){
+    if (!TextUtils.equals(Build.DEVICE,"virgo-perf1")){
       return;
     }
     Intent service = new Intent(this, HomeEntranceService.class);
