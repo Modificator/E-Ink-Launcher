@@ -33,6 +33,7 @@ import cn.modificator.launcher.model.WifiControl;
 public class SettingFramgent extends Fragment implements View.OnClickListener {
   Spinner col_num_spinner;
   Spinner row_num_spinner;
+  Spinner appNameLinesSpinner;
   SeekBar font_control;
   View rootView;
   TextView hideDivider, ftpAddr, ftpStatus,showStatusBar,showCustomIcon;
@@ -63,6 +64,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
     font_control = rootView.findViewById(R.id.font_control);
     col_num_spinner = rootView.findViewById(R.id.col_num_spinner);
     row_num_spinner = rootView.findViewById(R.id.row_num_spinner);
+    appNameLinesSpinner = rootView.findViewById(R.id.appNameLine);
 
     showStatusBar.setOnClickListener(this);
     hideDivider.setOnClickListener(this);
@@ -102,6 +104,21 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
 
       }
     });
+    appNameLinesSpinner.setSelection(getAppLineSpinnerSelectPosition(),false);
+    appNameLinesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent();
+        intent.putExtra(Launcher.APP_NAME_SHOW_LINES, position);
+        intent.setAction(Launcher.LAUNCHER_ACTION);
+        getActivity().sendBroadcast(intent);
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+
+      }
+    });
     rootView.findViewById(R.id.btnHideFontControl).setOnClickListener(this);
     rootView.findViewById(R.id.changeFontSize).setOnClickListener(this);
     rootView.findViewById(R.id.helpAbout).setOnClickListener(this);
@@ -129,6 +146,11 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
     });
 
     updateStatus();
+  }
+
+  private int getAppLineSpinnerSelectPosition(){
+    if (Config.appNameLines<3)return Config.appNameLines;
+    return 3;
   }
 
   @Override

@@ -11,7 +11,7 @@
           android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:layout_gravity="right|bottom"
-          android:layout_marginBottom="45dp"
+          android:layout_marginBottom="@dimen/menu_item_height"
           android:background="@drawable/border"
           android:orientation="vertical">
 
@@ -161,7 +161,7 @@
           <LinearLayout
               android:id="@+id/toHideApps"
               android:layout_width="match_parent"
-              android:layout_height="45dp"
+              android:layout_height="@dimen/menu_item_height"
               android:layout_marginTop="5dp"
               android:orientation="horizontal">
 
@@ -171,7 +171,7 @@
                   android:layout_marginLeft="20dp"
                   android:gravity="center"
                   android:text="管理隐藏应用"
-                  android:textSize="16dp" />
+                  android:textSize="@dimen/menu_item_text_size" />
 
 
           </LinearLayout>
@@ -185,7 +185,7 @@
           <TextView
               android:id="@+id/deleteApp"
               android:layout_width="match_parent"
-              android:layout_height="45dp"
+              android:layout_height="@dimen/menu_item_height"
               android:gravity="center_vertical"
               android:paddingLeft="20dp"
               android:text="删除应用"
@@ -212,7 +212,7 @@
       <ImageView
           android:id="@+id/toBack"
           android:layout_width="60dp"
-          android:layout_height="45dp"
+          android:layout_height="@dimen/menu_item_height"
           android:layout_gravity="bottom|right"
           android:background="#ffffff"
           android:clickable="true"
@@ -222,7 +222,7 @@
     <ImageView
         android:id="@+id/toBack"
         android:layout_width="60dp"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/menu_item_height"
         android:layout_gravity="bottom|right"
         android:background="#ffffff"
         android:clickable="true"
@@ -233,7 +233,7 @@
         android:id="@+id/font_control_p"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="@dimen/menu_item_height"
         android:clickable="true"
         android:visibility="gone">
 
@@ -280,7 +280,7 @@
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="@dimen/menu_item_height"
         android:background="@drawable/border"
         android:orientation="vertical">
 
@@ -315,8 +315,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/menu_item_height"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <Space
@@ -329,7 +329,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/setting_row_icons"
-                android:textSize="18dp" />
+                android:textSize="@dimen/menu_item_text_size" />
 
             <Spinner
                 android:id="@+id/col_num_spinner"
@@ -355,7 +355,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/menu_item_height"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -369,7 +369,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/setting_column_icons"
-                android:textSize="18dp" />
+                android:textSize="@dimen/menu_item_text_size" />
 
             <Spinner
                 android:id="@+id/row_num_spinner"
@@ -377,7 +377,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:entries="@array/col_num_values"
-                android:gravity="center"></Spinner>
+                android:gravity="center"/>
 
             <Space
                 android:layout_width="wrap_content"
@@ -387,81 +387,109 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
             android:layout_marginTop="5dp"
+            android:layout_height="1dp"
             android:background="#000000" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_show_name"
+                android:textSize="@dimen/menu_item_text_size" />
+
+            <Spinner
+                android:id="@+id/appNameLine"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:entries="@array/app_name_line"
+                android:gravity="center"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="1dp"
+            android:background="#000000" />
 
         <TextView
             android:id="@+id/hideDivider"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/menu_item_height"
+            android:paddingLeft="20dp"
             android:gravity="left|center_vertical"
             android:text="@string/setting_show_divider"
-            android:textSize="16dp" />
+            android:textSize="@dimen/menu_item_text_size" />
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="#000000" />
 
         <TextView
             android:id="@+id/showStatusBar"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/menu_item_height"
+            android:paddingLeft="20dp"
             android:gravity="left|center_vertical"
             android:text="@string/show_statusbar"
-            android:textSize="16dp" />
+            android:textSize="@dimen/menu_item_text_size" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="#000000" />
 
         <TextView
             android:id="@+id/showWifiName"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/menu_item_height"
+            android:paddingLeft="20dp"
             android:gravity="left|center_vertical"
             android:text="@string/show_wifi_name"
-            android:textSize="16dp" />
+            android:textSize="@dimen/menu_item_text_size" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="#000000" />
 
         <TextView
             android:id="@+id/showCustomIcon"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/menu_item_height"
+            android:paddingLeft="20dp"
             android:gravity="left|center_vertical"
             android:text="@string/show_custom_icon"
-            android:textSize="16dp" />
+            android:textSize="@dimen/menu_item_text_size" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="#000000" />
 
         <LinearLayout
             android:id="@+id/changeFontSize"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/menu_item_height"
             android:orientation="horizontal">
 
             <TextView
@@ -470,7 +498,7 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:text="@string/setting_set_font_size"
-                android:textSize="16dp" />
+                android:textSize="@dimen/menu_item_text_size" />
 
 
         </LinearLayout>
@@ -478,7 +506,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:background="#000000" />
 
         <TextView
@@ -488,7 +515,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:text="@string/setting_apps_manager"
-            android:textSize="16sp"
+            android:textSize="@dimen/menu_item_text_size"
             tools:text="管理应用" />
 
         <View
@@ -499,8 +526,7 @@
         <LinearLayout
             android:id="@+id/helpAbout"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/menu_item_height"
             android:orientation="horizontal">
 
             <TextView
@@ -509,7 +535,7 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:text="@string/setting_help_and_about"
-                android:textSize="16dp" />
+                android:textSize="@dimen/menu_item_text_size" />
             <!--android:text="帮助 &amp; 关于"-->
 
 
@@ -534,7 +560,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:minHeight="45dp"
+            android:minHeight="@dimen/menu_item_height"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -545,7 +571,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/setting_cloud_manager_wifi_off"
-                android:textSize="16dp"
+                android:textSize="@dimen/menu_item_text_size"
                 tools:text="网络传书 （开）" />
 
             <TextView

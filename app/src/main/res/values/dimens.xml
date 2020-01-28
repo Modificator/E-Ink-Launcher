@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <!--<dimen name="setting_page_width"></dimen>-->
+
+    <item name="menu_item_text_size" type="dimen">18sp</item>
+    <item name="menu_item_height" type="dimen">55dp</item>
 </resources>

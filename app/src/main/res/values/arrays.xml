@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="col_num_entries" >
+    <string-array name="col_num_entries">
         <item>2</item>
         <item>3</item>
         <item>4</item>
@@ -21,5 +21,11 @@
         <item>8 items</item>
         <item>9 items</item>
         <item>10 items</item>
+    </string-array>
+    <string-array name="app_name_line">
+        <item>hide</item>
+        <item>1 line</item>
+        <item>2 line</item>
+        <item>no limit</item>
     </string-array>
 </resources>

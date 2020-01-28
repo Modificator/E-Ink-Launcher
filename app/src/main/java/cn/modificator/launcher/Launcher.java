@@ -43,6 +43,7 @@ public class Launcher extends Activity {
 
   public static final String ROW_NUM_KEY = "rowNumKey";
   public static final String COL_NUM_KEY = "colNumKey";
+  public static final String APP_NAME_SHOW_LINES = "appNameShowLines";
   public static final String HIDE_APPS_KEY = "hideAppsKey";
   public static final String DELETEAPP = "deleteApp";
   public static final String LAUNCHER_SHOW_STATUS_BAR = "launcherShowStatusBar";
@@ -84,7 +85,6 @@ public class Launcher extends Activity {
     isChina = getResources().getConfiguration().locale.getCountry().equals("CN");
 
     initView();
-    //Log.e("----",Arrays.toString(iconFile.list()));
     checkLaunchHomeNotification();
   }
 
@@ -299,6 +299,11 @@ public class Launcher extends Activity {
       }else if (bundle.containsKey(LAUNCHER_SHOW_CUSTOM_ICON)){
         config.setCustomIconShowStatus(bundle.getBoolean(LAUNCHER_SHOW_CUSTOM_ICON));
         launcherView.refreshReplaceIcon();
+      }else if (bundle.containsKey(APP_NAME_SHOW_LINES)){
+        int lines = bundle.getInt(APP_NAME_SHOW_LINES);
+        if (lines==3)lines=Integer.MAX_VALUE;
+        config.setAppNameLines(lines);
+        launcherView.updateAppNameLines();
       }
     }
   }

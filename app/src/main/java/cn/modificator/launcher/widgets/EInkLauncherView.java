@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.PowerManager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -148,7 +149,11 @@ public class EInkLauncherView extends ViewGroup{
     for (int i = 0; i < ROW_NUM * COL_NUM; i++) {
       View itemView = LayoutInflater.from(getContext()).inflate(R.layout.launcher_item, this, false);
       observable.addObserver((Observer) itemView.findViewById(R.id.appName));
-      ((TextView)itemView.findViewById(R.id.appName)).setTextSize(TypedValue.COMPLEX_UNIT_SP, Config.fontSize);
+      TextView tvAppName = ((TextView)itemView.findViewById(R.id.appName));
+      tvAppName.setTextSize(TypedValue.COMPLEX_UNIT_SP, Config.fontSize);
+      tvAppName.setMinLines(Config.appNameLines==2?Config.appNameLines:0);
+      tvAppName.setMaxLines(Config.appNameLines);
+      tvAppName.setEllipsize(TextUtils.TruncateAt.END);
 
       if (hideDivider) {
         itemView.setBackgroundResource(R.drawable.app_item_final);
@@ -225,6 +230,14 @@ public class EInkLauncherView extends ViewGroup{
       }
     }
     changeItemStatus();
+  }
+
+  public void updateAppNameLines(){
+    for (int i = 0; i < ROW_NUM*COL_NUM; i++) {
+      TextView tvAppName = getChildAt(i).findViewById(R.id.appName);
+      tvAppName.setMinLines(Config.appNameLines==2?Config.appNameLines:0);
+      tvAppName.setMaxLines(Config.appNameLines);
+    }
   }
 
   public void setAppList(List<ResolveInfo> appList) {

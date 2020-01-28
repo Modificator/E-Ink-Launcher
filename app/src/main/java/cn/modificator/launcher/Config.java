@@ -16,6 +16,7 @@ public class Config {
   //行数
   public static int rowNum = -1;
   public static float fontSize = -1;
+  public static int appNameLines = Integer.MAX_VALUE;
   public static boolean hideDivider = false;
   public static boolean showStatusBar = false;
   public static boolean showCustomIcon = false;
@@ -27,6 +28,7 @@ public class Config {
     getCustomIconShowStatus();
     getDividerHideStatus();
     getStatusBarShowStatus();
+    getAppNameLines();
   }
 
   public int getColNum() {
@@ -105,6 +107,7 @@ public class Config {
   }
 
   public void setDividerHideStatus(boolean b) {
+    hideDivider = b;
     SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
     preferences.edit().putBoolean(Launcher.LAUNCHER_HIDE_DIVIDER, b).apply();
   }
@@ -114,6 +117,7 @@ public class Config {
   }
 
   public void setStatusBarShowStatus(boolean b){
+    showStatusBar = b;
     SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
     preferences.edit().putBoolean(Launcher.LAUNCHER_SHOW_STATUS_BAR, b).apply();
   }
@@ -123,7 +127,18 @@ public class Config {
   }
 
   public void setCustomIconShowStatus(boolean b){
+    showCustomIcon = b;
     SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
     preferences.edit().putBoolean(Launcher.LAUNCHER_SHOW_CUSTOM_ICON, b).apply();
+  }
+
+  public void setAppNameLines(int lineNum){
+    appNameLines = lineNum;
+    SharedPreferences preferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
+    preferences.edit().putInt(Launcher.APP_NAME_SHOW_LINES, lineNum).apply();
+  }
+
+  public int getAppNameLines(){
+    return appNameLines = context.getSharedPreferences(preferencesFileName,Context.MODE_PRIVATE).getInt(Launcher.APP_NAME_SHOW_LINES,Integer.MAX_VALUE);
   }
 }

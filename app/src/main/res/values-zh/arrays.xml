@@ -22,4 +22,10 @@
         <item>9个</item>
         <item>10个</item>
     </string-array>
+    <string-array name="app_name_line">
+        <item>隐藏</item>
+        <item>一行</item>
+        <item>两行</item>
+        <item>不限制</item>
+    </string-array>
 </resources>
