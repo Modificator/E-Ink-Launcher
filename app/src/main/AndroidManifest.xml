@@ -26,20 +26,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Launcher"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category
-                    android:name="com.yotadevices.intent.category.EPD_HOME" />
-            </intent-filter>
-            <meta-data android:name="com.yotadevices.keep_on_epd_screen" android:value="true"/>
-        </activity>
 
         <service
             android:name=".ftpservice.FTPService"

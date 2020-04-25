@@ -18,8 +18,8 @@ android {
         applicationId "cn.modificator.launcher"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 24
-        versionName "0.1.8.2"
+        versionCode 25
+        versionName "0.1.8.3"
         signingConfig signingConfigs.config
     }
     buildTypes {
@@ -44,7 +44,15 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
+    flavorDimensions "screen"
     productFlavors {
+        home{
+            dimension "screen"
+        }
+        epd{
+            dimension "screen"
+        }
     }
     packagingOptions {
         exclude 'proguard-project.txt'
