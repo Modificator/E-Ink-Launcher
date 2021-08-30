@@ -13,3 +13,10 @@ projectFilesBackup
 config.gradle
 KeyStore.key
 release/output.json
+*__gen.go
+*__ignore.go
+*.swp
+*.swo
+~i_*
+ig_*
+zzzig_*
