@@ -12,13 +12,13 @@ android {
             storePassword release.storePassword
         }
     }
-    compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
     defaultConfig {
         applicationId "cn.modificator.launcher"
         minSdkVersion 14
-        targetSdkVersion 29
-        versionCode 26
+        targetSdkVersion 31
+        versionCode 27
         versionName "0.1.8.3"
         signingConfig signingConfigs.config
     }

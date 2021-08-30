@@ -3,10 +3,10 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:7.0.1'
 //        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,7 +17,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

@@ -11,7 +11,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.PowerManager;
+import android.provider.MediaStore;
+import android.provider.UserDictionary;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -97,7 +100,17 @@ public class EInkLauncherView extends ViewGroup{
     this.iconReplacePkg.clear();
     if (getContext().getExternalCacheDir() == null) return;
     if (!Config.showCustomIcon) {
-      File iconFileRoot = new File(getContext().getExternalCacheDir().getParentFile().getParentFile().getParentFile().getParentFile(), "E-Ink Launcher" + File.separator + "icon");
+      File iconFileRoot = null;
+      if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+        iconFileRoot = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "E-Ink Launcher" + File.separator + "icon");
+      }else{
+        iconFileRoot = new File(Environment.getExternalStorageDirectory(),"E-Ink Launcher" + File.separator + "icon");
+      }
+      if (!iconFileRoot.exists()){
+        try {
+          iconFileRoot.mkdirs();
+        }catch (Exception e){}
+      }
       if (iconFileRoot == null || iconFileRoot.listFiles() == null) return;
       for (File file : iconFileRoot.listFiles()) {
         this.iconReplaceFile.add(file);
@@ -196,9 +209,9 @@ public class EInkLauncherView extends ViewGroup{
         }
         if (position<dataList.size()&&position<getChildCount()) {
           String packageName = dataList.get(COL_NUM * i + j).activityInfo.packageName;
-          if (packageName == AppDataCenter.wifiPackageName){
+          if (AppDataCenter.wifiPackageName.equals(packageName)){
             WifiControl.bind(itemView);
-          }else if (packageName == AppDataCenter.oneKeyLockPackageName){
+          }else if (AppDataCenter.oneKeyLockPackageName.equals(packageName)){
             if (iconReplacePkg.contains(packageName)) {
               ((ImageView) itemView.findViewById(R.id.appImage)).setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(packageName))));
             }else {
