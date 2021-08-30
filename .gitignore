@@ -12,3 +12,4 @@ projectFilesBackup
 .idea
 config.gradle
 KeyStore.key
+release/output.json
