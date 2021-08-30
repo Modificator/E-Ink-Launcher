@@ -2,7 +2,9 @@ package cn.modificator.launcher;
 
 import android.Manifest;
 import android.app.Fragment;
+import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -25,6 +27,7 @@ import androidx.annotation.NonNull;
 import java.util.Observable;
 
 import cn.modificator.launcher.ftpservice.FTPService;
+import cn.modificator.launcher.model.AdminReceiver;
 import cn.modificator.launcher.model.WifiControl;
 
 /**
@@ -69,6 +72,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
     showStatusBar.setOnClickListener(this);
     hideDivider.setOnClickListener(this);
     showCustomIcon.setOnClickListener(this);
+    rootView.findViewById(R.id.openDeviceManager).setOnClickListener(this);
     showStatusBar.getPaint().setStrikeThruText(Config.showStatusBar);
     hideDivider.getPaint().setStrikeThruText(Config.hideDivider);
     row_num_spinner.setSelection(Config.rowNum - 2, false);
@@ -227,6 +231,9 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
             getActivity().onBackPressed();
           }
         });
+        break;
+      case R.id.openDeviceManager:
+        startActivity(new Intent().setComponent(new ComponentName("com.android.settings", "com.android.settings.DeviceAdminSettings")));
         break;
     }
   }
