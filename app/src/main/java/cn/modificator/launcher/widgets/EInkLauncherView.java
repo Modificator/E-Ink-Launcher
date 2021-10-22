@@ -336,7 +336,7 @@ public class EInkLauncherView extends ViewGroup{
         WifiControl.onClickWifiItem();
       }else{
         ComponentName componentName = new ComponentName(info.activityInfo.packageName, info.activityInfo.name);
-        Intent intent = new Intent();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setComponent(componentName);
