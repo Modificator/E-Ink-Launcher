@@ -13,8 +13,6 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.PowerManager;
-import android.provider.MediaStore;
-import android.provider.UserDictionary;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -199,7 +197,7 @@ public class EInkLauncherView extends ViewGroup{
   private void refreshIconData(){
     int position;
     View itemView;
-    WifiControl.bind(null);
+    WifiControl.bind(null, iconReplacePkg, iconReplaceFile);
     for (int i = 0; i < ROW_NUM; i++) {
       for (int j = 0; j < COL_NUM; j++) {
         position = i*COL_NUM+j;
@@ -210,7 +208,7 @@ public class EInkLauncherView extends ViewGroup{
         if (position<dataList.size()&&position<getChildCount()) {
           String packageName = dataList.get(COL_NUM * i + j).activityInfo.packageName;
           if (AppDataCenter.wifiPackageName.equals(packageName)){
-            WifiControl.bind(itemView);
+            WifiControl.bind(itemView, iconReplacePkg,iconReplaceFile);
           }else if (AppDataCenter.oneKeyLockPackageName.equals(packageName)){
             if (iconReplacePkg.contains(packageName)) {
               ((ImageView) itemView.findViewById(R.id.appImage)).setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(packageName))));

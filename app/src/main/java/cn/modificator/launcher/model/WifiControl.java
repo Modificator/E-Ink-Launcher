@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.Settings;
 
@@ -15,6 +15,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
+import java.io.File;
+import java.util.List;
+
+import cn.modificator.launcher.Config;
 import cn.modificator.launcher.R;
 import cn.modificator.launcher.widgets.ObserverFontTextView;
 import cn.modificator.launcher.widgets.RatioImageView;
@@ -26,6 +30,9 @@ import cn.modificator.launcher.widgets.RatioImageView;
  */
 
 public class WifiControl {
+  final String wifiOnResName = "E-ink_Launcher.WifiOn";
+  final String wifiOffResName = "E-ink_Launcher.WifiOff";
+
   ObserverFontTextView appName;
   RatioImageView appImage;
   WifiStateReceiver wifiStateReceiver;
@@ -35,6 +42,8 @@ public class WifiControl {
   int showNameRes;
   int showIconRes;
   String connectWifiName;
+  List<String> iconReplacePkg;
+  List<File> iconReplaceFile;
 
   private static WifiControl instance;
 
@@ -73,12 +82,14 @@ public class WifiControl {
     mContext.registerReceiver(wifiStateReceiver, filter);
   }
 
-  public static void bind(View view){
+  public static void bind(View view, List<String> iconReplacePkg, List<File> iconReplaceFile){
     if (view==null){
       instance.appImage=null;
       instance.appName = null;
       return;
     }
+    instance.iconReplacePkg = iconReplacePkg;
+    instance.iconReplaceFile = iconReplaceFile;
     instance.appName = view.findViewById(R.id.appName);
     instance.appImage = view.findViewById(R.id.appImage);
     instance.updateStatus();
@@ -97,7 +108,12 @@ public class WifiControl {
   private void updateStatus(){
     if (appName!=null) {
       appName.setText(mContext.getString(showNameRes, connectWifiName));
-      appImage.setImageResource(showIconRes);
+      if (Config.showCustomIcon && iconReplacePkg != null) {
+        String fileName = showIconRes == R.drawable.wifi_on ? wifiOnResName : wifiOffResName;
+        appImage.setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(fileName))));
+      } else {
+        appImage.setImageResource(showIconRes);
+      }
     }
   }
 

@@ -275,328 +275,333 @@
             android:src="@drawable/close_unclick" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/menuList"
+    <ScrollView
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="@dimen/menu_item_height"
-        android:background="@drawable/border"
-        android:orientation="vertical">
+        android:background="@drawable/border">
 
         <LinearLayout
-            android:id="@+id/toBack1"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:background="?android:selectableItemBackground"
-            android:paddingRight="30dp"
-            android:visibility="gone">
+            android:id="@+id/menuList"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="55dp"
+            <LinearLayout
+                android:id="@+id/toBack1"
+                android:layout_width="wrap_content"
                 android:layout_height="55dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/guide_last" />
+                android:background="?android:selectableItemBackground"
+                android:paddingRight="30dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/guide_last" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="桌面设置"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/setting_row_icons"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <Spinner
+                    android:id="@+id/col_num_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:entries="@array/col_num_values"
+                    android:gravity="center"></Spinner>
+
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/setting_column_icons"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <Spinner
+                    android:id="@+id/row_num_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:entries="@array/col_num_values"
+                    android:gravity="center"/>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/app_show_name"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+                <Spinner
+                    android:id="@+id/appNameLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:entries="@array/app_name_line"
+                    android:gravity="center"/>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="1dp"
+                android:background="#000000" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/hideDivider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:paddingLeft="20dp"
+                android:gravity="left|center_vertical"
+                android:text="@string/setting_show_divider"
+                android:textSize="@dimen/menu_item_text_size" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/showStatusBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:paddingLeft="20dp"
+                android:gravity="left|center_vertical"
+                android:text="@string/show_statusbar"
+                android:textSize="@dimen/menu_item_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/showWifiName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:paddingLeft="20dp"
+                android:gravity="left|center_vertical"
+                android:text="@string/show_wifi_name"
+                android:textSize="@dimen/menu_item_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/showCustomIcon"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:paddingLeft="20dp"
+                android:gravity="left|center_vertical"
+                android:text="@string/show_custom_icon"
+                android:textSize="@dimen/menu_item_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/changeFontSize"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="@string/setting_set_font_size"
+                    android:textSize="@dimen/menu_item_text_size" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/deleteApp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:gravity="center_vertical"
-                android:text="桌面设置"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/setting_row_icons"
-                android:textSize="@dimen/menu_item_text_size" />
-
-            <Spinner
-                android:id="@+id/col_num_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:entries="@array/col_num_values"
-                android:gravity="center"></Spinner>
-
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="#000000" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/setting_column_icons"
-                android:textSize="@dimen/menu_item_text_size" />
-
-            <Spinner
-                android:id="@+id/row_num_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:entries="@array/col_num_values"
-                android:gravity="center"/>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/app_show_name"
-                android:textSize="@dimen/menu_item_text_size" />
-
-            <Spinner
-                android:id="@+id/appNameLine"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:entries="@array/app_name_line"
-                android:gravity="center"/>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/hideDivider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:paddingLeft="20dp"
-            android:gravity="left|center_vertical"
-            android:text="@string/setting_show_divider"
-            android:textSize="@dimen/menu_item_text_size" />
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/showStatusBar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:paddingLeft="20dp"
-            android:gravity="left|center_vertical"
-            android:text="@string/show_statusbar"
-            android:textSize="@dimen/menu_item_text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/showWifiName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:paddingLeft="20dp"
-            android:gravity="left|center_vertical"
-            android:text="@string/show_wifi_name"
-            android:textSize="@dimen/menu_item_text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/showCustomIcon"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:paddingLeft="20dp"
-            android:gravity="left|center_vertical"
-            android:text="@string/show_custom_icon"
-            android:textSize="@dimen/menu_item_text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <LinearLayout
-            android:id="@+id/changeFontSize"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
-                android:text="@string/setting_set_font_size"
-                android:textSize="@dimen/menu_item_text_size" />
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/deleteApp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="@string/setting_apps_manager"
-            android:textSize="@dimen/menu_item_text_size"
-            tools:text="管理应用" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/openDeviceManager"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:text="@string/setting_open_device_manager"
-            android:textSize="@dimen/menu_item_text_size"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <LinearLayout
-            android:id="@+id/helpAbout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/menu_item_height"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
-                android:text="@string/setting_help_and_about"
-                android:textSize="@dimen/menu_item_text_size" />
-            <!--android:text="帮助 &amp; 关于"-->
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="20dp"
-            android:visibility="gone" />
-
-
-        <LinearLayout
-            android:id="@+id/menu_ftp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/menu_item_height"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:id="@+id/ftp_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/setting_cloud_manager_wifi_off"
+                android:paddingLeft="20dp"
+                android:text="@string/setting_apps_manager"
                 android:textSize="@dimen/menu_item_text_size"
-                tools:text="网络传书 （开）" />
+                tools:text="管理应用" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
 
             <TextView
-                android:id="@+id/ftp_addr"
+                android:id="@+id/openDeviceManager"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="@string/setting_open_device_manager"
+                android:textSize="@dimen/menu_item_text_size"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:id="@+id/helpAbout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_item_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="@string/setting_help_and_about"
+                    android:textSize="@dimen/menu_item_text_size" />
+                <!--android:text="帮助 &amp; 关于"-->
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
-                tools:text="ftp://192.168.123.121" />
+                android:layout_weight="1"
+                android:minHeight="20dp"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:id="@+id/menu_ftp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/menu_item_height"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/ftp_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_cloud_manager_wifi_off"
+                    android:textSize="@dimen/menu_item_text_size"
+                    tools:text="网络传书 （开）" />
+
+                <TextView
+                    android:id="@+id/ftp_addr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    tools:text="ftp://192.168.123.121" />
+            </LinearLayout>
+
+
+
         </LinearLayout>
-
-
-
-    </LinearLayout>
+    </ScrollView>
 </FrameLayout>
