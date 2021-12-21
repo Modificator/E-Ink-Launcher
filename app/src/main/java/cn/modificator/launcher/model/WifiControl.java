@@ -108,9 +108,10 @@ public class WifiControl {
   private void updateStatus(){
     if (appName!=null) {
       appName.setText(mContext.getString(showNameRes, connectWifiName));
-      if (Config.showCustomIcon && iconReplacePkg != null) {
-        String fileName = showIconRes == R.drawable.wifi_on ? wifiOnResName : wifiOffResName;
-        appImage.setImageURI(Uri.fromFile(iconReplaceFile.get(iconReplacePkg.indexOf(fileName))));
+      String fileName = showIconRes == R.drawable.wifi_on ? wifiOnResName : wifiOffResName;
+      int index = iconReplacePkg.indexOf(fileName);
+      if (Config.showCustomIcon && iconReplacePkg != null && index > 0) {
+        appImage.setImageURI(Uri.fromFile(iconReplaceFile.get(index)));
       } else {
         appImage.setImageResource(showIconRes);
       }
