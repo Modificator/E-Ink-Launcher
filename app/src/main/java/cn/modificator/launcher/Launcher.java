@@ -1,10 +1,12 @@
 package cn.modificator.launcher;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
@@ -415,11 +417,34 @@ public class Launcher extends Activity {
   }
 
   public void lockScreen() {
-    if (policyManager.isAdminActive(new ComponentName(this, AdminReceiver.class))) {
-      policyManager.lockNow();
-    } else {
-      activeManage();
+    try {
+      if (policyManager.isAdminActive(new ComponentName(this, AdminReceiver.class))) {
+        policyManager.lockNow();
+      } else {
+        activeManage();
+      }
+    }catch (Exception e){
+      openDevicePolicyManager();
     }
+  }
+
+  private void openDevicePolicyManager() {
+    new AlertDialog.Builder(this)
+            .setTitle(R.string.launch_failed)
+            .setMessage(R.string.launch_devicemanager_failed)
+            .setPositiveButton(R.string.launch_devicemanager, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                try {
+                  Intent intent = Intent.parseUri("intent:#Intent;component=com.android.settings/.DeviceAdminSettings;end", Intent.URI_INTENT_SCHEME);
+                  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                  startActivity(intent);
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              }
+            })
+            .setNegativeButton(R.string.dialog_cancel, null).show();
   }
 
   private void activeManage() {

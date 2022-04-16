@@ -54,6 +54,9 @@
     <string name="wifi_status_disconnecting">WiFi disconnecting</string>
 
     <string name="item_lockscreen">Lock Screen</string>
+    <string name="launch_failed">Launch failed</string>
+    <string name="launch_devicemanager_failed">Please open Device Policy Manager and enable E-Ink Launcher</string>
+    <string name="launch_devicemanager">Open Device Policy Manager</string>
 
     <string-array name="power_menu">
         <item>Power off</item>

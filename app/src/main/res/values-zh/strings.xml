@@ -73,4 +73,7 @@
     <string name="show_wifi_name">显示WiFi名字</string>
     <string name="notification_click_back_launcher">点击这里回到桌面</string>
     <string name="app_show_name">App 名字</string>
+    <string name="launch_failed">启动失败</string>
+    <string name="launch_devicemanager">打开设备管理器</string>
+    <string name="launch_devicemanager_failed">请打开设备管理器并启用 E-Ink Launcher</string>
 </resources>

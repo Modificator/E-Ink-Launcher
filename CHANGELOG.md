@@ -1,3 +1,8 @@
+## 0.1.8.6
+- fix custom wifi icon failed
+- one key lock crash
+---------
+
 ## 0.1.8.5
 - fix no custom wifi icon crash
 ---------

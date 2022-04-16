@@ -110,7 +110,7 @@ public class WifiControl {
       appName.setText(mContext.getString(showNameRes, connectWifiName));
       String fileName = showIconRes == R.drawable.wifi_on ? wifiOnResName : wifiOffResName;
       int index = iconReplacePkg.indexOf(fileName);
-      if (Config.showCustomIcon && iconReplacePkg != null && index > 0) {
+      if (!Config.showCustomIcon && iconReplacePkg != null && index > 0) {
         appImage.setImageURI(Uri.fromFile(iconReplaceFile.get(index)));
       } else {
         appImage.setImageResource(showIconRes);
